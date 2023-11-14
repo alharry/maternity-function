@@ -1,0 +1,193 @@
+---
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
+
+# Load results
+source(here::here("code", "setup.R"))
+
+data <- read_rds(here("data", "simulations-summarised.Rds")) %>% 
+  mutate(Nsamples_sel = fct_cross(as.factor(mesh_name), as.factor(Nsamples)))
+```
+
+## Figures
+```{r, fig.width = 12, fig.height = 10}
+ggplot(data %>% filter(par_name %in% "m50")) +
+  geom_point(aes(as.factor(Nsamples), conv_success, col = repro_freq, group = repro_freq)) + 
+  geom_line(aes(as.factor(Nsamples), conv_success, col = repro_freq, group = repro_freq)) +
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) +
+  scale_color_brewer(palette = "Spectral") + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Number of samples", y = "Convergence success (%)", title = "Model convergence") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+Figure S1. 
+
+```{r, fig.width = 12, fig.height = 10}
+ggplot(data %>% filter(par_name %in% "m50")) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "Mean % relative error", title = "Bias - Length at 50% maternity") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+
+```
+Figure S2. 
+
+```{r, fig.width = 12, fig.height = 10}
+ggplot(data %>% filter(par_name %in% "c")) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "Mean % relative error", title = expression("Bias - "~italic(P)[Max])) +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+
+```
+Figure S3. Note 2PLF-maturity and 3PLF-fixed methods are identical
+
+```{r, fig.width = 12, fig.height = 10}
+ggplot(data %>% filter(par_name %in% "m50")) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "Mean % absolute relative error", title = "Precision - Length at 50% maternity") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+Figure S4.
+
+```{r, fig.width = 12, fig.height = 10}
+ggplot(data %>% filter(par_name %in% "c")) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "Mean % absolute relative error", title = expression("Precision - "~italic(P)[Max])) +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+Figure S5.
+\newpage
+
+```{r fig.width = 12, fig.height=7}
+ggplot(data %>% filter(par_name %in% "m50", method_long %in% c("3PLF - free", "3PLF - fixed"))) +
+  geom_hline(yintercept = 50, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "% interval coverage", title = "Interval coverage - Length at 50% maternity") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+Figure S6.
+\newpage
+
+```{r fig.width = 12, fig.height=5}
+ggplot(data %>% filter(par_name %in% "c", method_long %in% c("3PLF - free"))) +
+  geom_hline(yintercept = 50, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "% interval coverage", title = expression("Interval coverage - "~italic(P)[Max])) +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+Figure S7. 
+\newpage
+
+
+```{r, fig.width = 11, fig.height = 8.5}
+filter(data, method_long %in% c("3PLF - free", par_name %in% "c")) %>% 
+  ggplot() + 
+  geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = n_maternal)) + 
+  geom_text(aes(x = as.factor(Nsamples_sel), y = repro_freq, label = round(n_maternal, 0))) +
+  scale_fill_viridis_c(trans = "log10") + 
+  guides(fill = guide_colorbar(title = bquote(atop("Median", "n. maternal")))) + 
+  facet_wrap(~species, nrow = 2) +
+  theme_half_open() + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  labs(x = "Selectivity: Sample size", y = bquote(atop(italic(P)[Max],("Reproductive frequency")))) 
+```
+Figure S8. Median number of females in maternal condition in simulated data that were used to estimate maternity parameters subject to varying sample size, gear selectivity, reproductive frequency. 250 iterations were carried out for each simulation. 
+\newpage
+
+```{r, fig.width = 11, fig.height = 8.5}
+filter(data, method_long %in% c("3PLF - free", par_name %in% "c")) %>% 
+ggplot() + 
+  geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = n_immature)) + 
+  geom_text(aes(x = as.factor(Nsamples_sel), y = repro_freq, label = round(n_immature, 0))) +
+  scale_fill_viridis_c(trans = "log10") + 
+  guides(fill = guide_colorbar(title = bquote(atop("Median", "n. immature")))) + 
+  facet_wrap(~species, nrow = 2) +
+  theme_half_open() + 
+  theme(axis.text.x = element_text(angle = 90)) + 
+  labs(x = "Selectivity: Sample size", y = bquote(atop(italic(P)[Max],("Reproductive frequency")))) 
+```
+Figure S9. Median number of immature females in simulated data that were used to estimate maternity parameters subject to varying sample size, gear selectivity, reproductive frequency. 250 iterations were carried out for each simulation. 
+\newpage
+
+
+
+```{r fig.width = 12, fig.height = 10}
+ggplot(data %>% filter(par_name %in% "r_0")) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "Mean % relative error", title = "Bias - Reproductive Output") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+
+```{r fig.width = 12, fig.height = 10}
+  ggplot(data %>% filter(par_name %in% "r_0")) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) + 
+  facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "Mean % relative absolute error", title = "Precision - Reproductive Output") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```

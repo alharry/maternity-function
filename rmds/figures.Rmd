@@ -1,0 +1,167 @@
+---
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load results
+source(here::here("code", "setup.R"))
+
+```
+
+## Figures
+
+```{r out.width = '100%', fig.cap = "Approach used to generate simulated data and test the performance of four methods for calculating maternity parameters. "}
+knitr::include_graphics(here("img","figure1.png"))
+```
+
+\newpage
+```{r fig.width = 7, fig.height= 5.5}
+data <- read_rds(here("data", "simulations-pivot.Rds"))
+
+ggplot() + 
+  geom_point(data = data, aes(x = rel_error_c, y = rel_error_m50, col = repro_freq)) +
+  scale_color_viridis_d(option = "D", direction = 1) + 
+  facet_grid(species~method_long) + 
+  ylim(-30, 50) +
+  guides(colour = guide_legend(bquote(atop(paste(plain("True "),italic(P)[Max]),("Reproductive frequency"))))) + 
+  theme_bw() +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center") + 
+  xlab(expression("% relative error "~hat(italic(P)[Max]))) +
+  ylab(expression("% relative error "~hat(italic(L^"'")[50])))
+```
+
+Figure 2.  Per cent relative error (bias) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for 3PLF methods. Each point represents parameter estimates one iteration of simulated data. Bias tended to increase as the true underlying $P_{Max}$ decreased. 
+\newpage
+
+```{r}
+data <- read_rds(here("data", "simulations-slim.Rds"))
+
+data <- data %>% 
+    mutate(method_long = case_when(
+    method %in% "2" ~ "2PLF - maturity",
+    method %in% "2a" ~ "2PLF - maternity",
+    method %in% "3" ~ "3PLF - free",
+    method %in% "3a" ~ "3PLF - fixed"
+  )) %>%
+  mutate(mesh_name_long = case_when(
+    mesh_name %in% "high" ~ "High selectivity",
+    mesh_name %in% "low" ~ "Low selectivity"
+  )) %>% 
+  filter(mesh_name %in% "high", par_name %in% "r_0") %>% 
+  filter(Nsamples %in% c(50, 250, 1000))
+
+data <- data %>% 
+  mutate(method_long = fct_relevel(
+    method_long, "3PLF - free",
+    "3PLF - fixed",
+    "2PLF - maternity",
+    "2PLF - maturity"
+  ))
+
+ggplot(data) +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_boxplot(aes(x = Nsamples, y = abs_error, fill = repro_freq), outlier.shape = NA) +
+  facet_grid(method_long ~ species) + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(fill = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  cowplot::theme_half_open() +
+  panel_border() +
+  background_grid() +
+  labs(x = "Sample size", y = "Median % absolute error") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center") + 
+  ylim(0, 80)
+```
+
+
+\newpage
+```{r fig.width = 10, fig.height= 7}
+# Load data - Sandbar
+data <- read_rds(here("data", "empirical-plumbeus.Rds"))
+preds <- read_rds(here("data", "empirical-predictions.Rds"))
+
+# Bin data into length categories for plotting
+brks = seq(40, 220, 8)
+data_binned <- data %>%
+  mutate(x_bin = findInterval(x, brks)) %>% 
+  mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
+  group_by(x_bin) %>%
+  summarise(p = sum(z)/ n())
+
+preds1 <- filter(preds, species %in% "C. plumbeus", label %in% "3PLF - free") %>% 
+  mutate(label2 = "italic('C. plumbeus ')~`- 3PLF  free`")
+
+p1 <- ggplot()  + 
+  geom_ribbon(data = preds1, aes(x = x, ymin = lower, ymax = upper), fill = "grey70") + 
+  geom_line(data = preds1, aes(x = x, y = y)) +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  ylim(0, 1) +
+  theme_cowplot() + 
+  labs(x = NULL, y = NULL) + 
+  facet_wrap(~label2, labeller = label_parsed) + 
+  theme(strip.text = element_text(hjust = 0.5))
+
+preds2 <- filter(preds, species %in% "C. plumbeus", label %in% "3PLF - fixed (PMax = 0.5)") %>%
+  mutate(label2 = "italic('C. plumbeus')~` - 3PLF fixed`")
+
+# Plot
+p2 <- ggplot()  + 
+  geom_ribbon(data = preds2, aes(x = x, ymin = lower, ymax = upper), fill = "grey70") + 
+  geom_line(data = preds2, aes(x = x, y = y)) +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  ylim(0, 1) +
+  theme_cowplot() + 
+  labs(x = NULL, y = NULL) + 
+  facet_wrap(~label2, labeller = label_parsed) + 
+  theme(strip.text = element_text(hjust = 0.5))
+
+# Load data - blacktip
+data <- read_rds(here("data", "empirical-limbatus.Rds"))
+
+# Bin data into length categories for plotting
+brks = seq(40, 160, 8)
+data_binned <- data %>%
+  mutate(x_bin = findInterval(x, brks)) %>% 
+  mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
+  group_by(x_bin) %>%
+  summarise(p = sum(z)/ n())
+
+preds3 <- filter(preds, species %in% "C. limbatus", label %in% "3PLF - free") %>%
+  mutate(label2 = "italic('C. limbatus')~` - 3PLF free`")
+
+# Plot
+p3 <- ggplot()  + 
+  geom_ribbon(data = preds3, aes(x = x, ymin = lower, ymax = upper), fill = "grey70") + 
+  geom_line(data = preds3, aes(x = x, y = y)) +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  ylim(0, 1) +
+  theme_cowplot() + 
+  labs(x = NULL, y = NULL) + 
+  facet_wrap(~label2, labeller = label_parsed) + 
+  theme(strip.text = element_text(hjust = 0.5))
+
+preds4 <- filter(preds, species %in% "C. limbatus", label %in% "3PLF - fixed (PMax = 0.5)") %>%
+  mutate(label2 = "italic('C. limbatus')~` - 3PLF fixed`")
+
+p4 <- ggplot()  + 
+  geom_ribbon(data = preds4, aes(x = x, ymin = lower, ymax = upper), fill = "grey70") + 
+  geom_line(data = preds4, aes(x = x, y = y)) +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  ylim(0, 1) +
+  theme_cowplot() + 
+  labs(x = NULL, y = NULL)  + 
+  facet_wrap(~label2, labeller = label_parsed) + 
+  theme(strip.text = element_text(hjust = 0.5))
+
+grid.arrange(p3, p4, p1, p2, left = textGrob("Proportion in maternal condition", gp = gpar(fontsize = 16, font = 8), rot = 90), bottom = textGrob("Fork length (cm)", gp = gpar(fontsize = 16, font = 8)))
+```
+*Figure 3. Comparison of 3PLF-free and -fixed methods used to estimate maternal parameters for blacktip shark, *C. limbatus*, and sandbar shark, *C. plumbeus* in the Gulf of Mexico and Western North Atlantic. Sold line is the expected proportion in maternal condition at fork length. The grey shaded region denotes 95% confidence intervals based on bootstrap resampling. A fixed value of $P_{Max} = 0.5$ was used for both species.*

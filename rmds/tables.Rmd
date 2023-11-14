@@ -1,0 +1,56 @@
+---
+output: 
+  pdf_document:
+    latex_engine: "pdflatex"
+geometry: 
+    - bottom=1.5cm
+    - top=1.5cm
+    - left=1.5cm
+    - right=1.5cm
+header-includes:
+    - \fontsize{8}{20}
+    - \usepackage{lscape}
+    - \pagenumbering{gobble} 
+tables: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+source(here::here("code", "setup.R"))
+
+# Load data
+empirical <- read_rds(here("data", "empirical-summary.Rds"))
+```
+
+\
+\
+```{r tbl1, results = 'asis'}
+t1 <- readxl::read_excel(here("data", "table-1.xlsx")) %>% 
+  mutate(`School shark` = as.character(`School shark`)) %>% 
+  mutate(`Gummy shark` = as.character(`Gummy shark`)) %>%  
+  xtable(caption = "Descriptions and values of parameters used in a simulation study to evaluate the performance of alternative methods for estimating maternity parameters \\newline")
+
+print(t1, type = "latex", caption.placement = "top", comment = F, include.rownames = F, 
+      sanitize.text.function = identity, booktabs = TRUE)
+```
+
+
+\newpage
+
+```{r tbl2, results = 'asis'}
+t2 <- empirical %>% 
+  rename(`$\\hat{P_{\\text{Max}}}$` = PMAX) %>% 
+  rename(`$\\hat{L'_{50}}\\text{(cm)}$` = L50) %>% 
+  rename(`$\\hat{L'_{95}}\\text{(cm)}$` = L95) %>% 
+  rename(`$\\Delta_{i}$` = delta_AIC) %>% 
+  rename(Method = method) %>%
+  rename(`$w_i$` = w_AIC)
+
+
+t2 <- xtable(t2, caption = "Parameter estimates and model selection criteria for three parameter logistic functions fit to empirical data for western North Atlantic sandbar sharks")
+
+print(t2, type = "latex", caption.placement = "top", comment = F, include.rownames = F,
+      sanitize.text.function = identity, booktabs = TRUE)
+```
+

@@ -1,0 +1,45 @@
+---
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load results
+source(here::here("code", "setup.R"))
+
+data <- read_rds(here("data", "simulations-summarised.Rds"))
+```
+
+## Tables
+
+Table S1. 
+
+```{r}
+# Tidy up data, save, reorder manually, then reload
+data %>% 
+select(species, repro_freq, Nsamples, mesh_name_long, everything()) %>% 
+  select(-sd_re, - sd_ae, -int_coverage, -mesh_name, -ntotal, -prop_pregnant, -n_maternal, -n_immature) %>% 
+  filter(!par_name %in% "m95") %>% 
+  pivot_wider(names_from = c("method_long", "par_name"), values_from = c("rel_error", "abs_error", "conv_success")) %>% 
+  arrange(mesh_name_long, species, desc(repro_freq)) %>% 
+  write_csv(here("tables", "table-s1.csv"))
+```
+
+
+Table S2. 
+```{r}
+data %>% 
+  group_by(species, repro_freq, mesh_name, Nsamples, ntotal) %>% 
+  nest() %>% 
+  select(-data) %>% 
+  ungroup() %>% 
+  mutate(n = 250 - ntotal) %>% 
+  filter(n > 0) %>% 
+  write_csv(here("tables", "table-s2.csv"))
+  
+```
+
+
+
+

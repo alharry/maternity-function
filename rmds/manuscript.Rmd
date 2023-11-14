@@ -1,0 +1,356 @@
+---
+title: |
+  Quantifying maternal reproductive output of chondrichthyan fishes
+subtitle: |
+author:
+- name: Alastair V Harry
+  affiliation: Fisheries & Agriculture Resource Management, Department of Primary Industries and Regional Development, 39 Northside Drive, Hillarys, 6025, WA, Australia
+  email: alastair.harry@gmail.com
+  number: 1
+- name: Ivy Baremore
+  affiliation: MarAlliance
+  number: 2
+- name: Andrew Piercy
+  affiliation: Valencia College
+  number: 3
+abstract: |
+  For the live-bearing and egg-laying class of chondrichthyan fishes a three parameter logistic 'maternity' function with a variable upper asymptote, $P_{Max}$, can be used to calculate the average probability of a female giving birth or laying eggs in a season. Although fundamental to calculating the reproductive capacity of a population, relatively few studies report maternity functions. Instead, maturity functions have typically been used as a proxy, despite evidence of a delay between attainment of functional maturity and pregnancy in some species. This study examined the relative performance of alternative approaches for quantifying maternal reproductive output. Applying logistic models to a combination of simulated and empirical data showed that it was feasible to estimate $P_{Max}$ from data and that precision, bias, and confidence interval coverage often improved compared to when a fixed value was used. At sample sizes < 250 individuals a fixed-value for $P_{Max}$ was more effective at reducing bias. Maturity parameters could be estimated with greater precision however substituting them in place of maternity parameters overestimated lifetime reproductive output. The extent to which maturity functions can provide a good approximation for maternity functions may be species specific and requires futher research. Greater use of maternity functions has the potential to improve calculation of reproductive output in quantitative populations models. We proposed that estimation of $P_{Max}$ is generally preferable to using a fixed value. In addition to improvements in parameter estimation, this method involves fewer assumptions and enables statistical inferences to be made on frequency of reproduction.
+
+toc: false
+output:
+  word_document: default
+  bookdown::pdf_document2:
+    pandoc_args:
+      - --csl=extras/cjfas.csl
+      - --citation-abbreviations=extras/abbreviations.json
+      - --template=extras/mytemplate.tex
+bibliography: "extras/maternal-output.bib"
+keep-latex: true
+linestretch: 2 
+header-includes:
+  - \fontsize{12}{20}
+  - \usepackage{lineno}
+  - \linenumbers
+  - \linenumberfont
+  - \renewcommand\linenumberfont{\normalfont\small\sffamily}
+  - \usepackage{fancyhdr}
+  - \pagestyle{fancy}
+  - \fancyhf{}
+  - \fancyfoot[L]{\thepage}
+  - \renewcommand{\headrulewidth}{0pt}
+  - \renewcommand{\footrulewidth}{0pt}
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Setup code
+source(here::here("code", "setup.R"))
+
+# Load results
+empirical <- read_rds(here("data", "empirical-summary.Rds"))
+plumbeus <- read_rds(here("data", "empirical-plumbeus.Rds"))
+
+```
+
+\newpage
+
+# Introduction
+
+Many ecological and evolutionary applications need quantitative data on the reproductive capacity of a population and in fisheries science this information forms the basis of widely-used management reference points such as spawning stock biomass [@quinn_quantitative_1999]. Calculating reproductive capacity requires data on the sexually mature proportion of the population contributing to reproduction at a given size or age. For most populations of teleost fishes a simple two-parameter logistic regression function (2PLF) is sufficient to model this process using dichotomous sexual maturity stage data (immature / mature) from a sample of individuals [@jennings_marine_2001; @king_fisheries_2007]. While the mathematical formulae and methods of statistically estimating parameters for a 2PLF vary, the estimated values are similar and can be obtained with the built in generalised linear model (GLM) programs in most modern statistical software.
+
+In chondrichthyan fishes (sharks, rays, skates, and chimaeras), the process of maturation can likewise be modeled with a simple 2PLF. However for the intents and purposes of calculating reproductive capacity, chondrichthyans differ in several ways to most teleosts. Firstly, in many chondrichthyans the duration of the reproductive cycle is longer than a year meaning the proportion of females that will give birth in the population in a given season is less than one [@frisk_life_2005; @dulvy_you_2008; @rigby_patterns_2015]. Secondly, there may be a lag between when females reach sexual maturity and when they begin reproducing [@harry_age_2013; @fujinami_reproductive_2017]. This is confounded by the adopted definition of maturity, which can lead to variable estimates of size and age at maturity [@braccini_determining_2006; @walker_spatial_2007; @montealegre-quijano_sexual_2014]. Finally, because female fecundity is low (usually $\ll$ 100 embryos), total pup or egg production and recruitment are likely to be closely related to the number of reproductively active females, exhibiting little interannual variability [@taylor_stock-recruitment_2013]. This contrasts the often highly variable relationship between stock size and recruitment in teleost fish, and warrants a precise definition and calculation of reproductive output. For these reasons, unlike in teleosts, a maturity function may not be the most appropriate tool to quantify reproductive capacity.
+
+## Maternity function
+
+Walker [-@walker_reproduction_2005] recognised the need for a maternity function, as distinct from a maturity function, to accurately quantify reproductive capacity in chondrichthyans. For this purpose he used a non-linear, three-parameter logistic function (3PLF) of the form: $$Y_i \sim B(x_i; n_i, P_i)$$ $$E[Y_i] = n_iP_i = \frac{\alpha}{1 + e^{-(b_0 + b_1x)}}$$ where the proportion of individuals in a given length or age category, $x_i$, that are in maternal condition, $Y_i$, is a binomially distributed random variable, with an expected value equal to the probability of an individual from that category being in maternal condition, $P_i$, multiplied by the total number of individuals in the category, $n_i$. If $x$ is a continuous rather than categorical variable (i.e. $n = 1$), $Y_i$ reduces to a Bernoulli random variable [@zuur_analyzing_2007]. $\alpha$ is the upper asymptote of the curve, controlling the maximum value of $Y$ as $x$ approaches infinity. The lesser-used 3PLF reduces to the ubiquitous 2PLF when $\alpha = 1$, as is appropriate for most teleost and chondrichthyan populations if modeling maturity [@roa_estimation_1999; @quinn_quantitative_1999]. When $\alpha = 1$, the function also belongs to the class of generalised linear models; logistic transformation of the dependent variable allows $Y$ to be modeled as a linear function of $x_i$, where $b_0$ and $b_1$ are the intercept and slope, respectively [@zuur_analyzing_2007]. Alternatively, the model can be expressed in more biologically relevant terms as: $$E[Y_i] = P_{Max} \left ( 1 + e^{-ln(19)\left ( \frac{x_i - x_{50}}{x_{95} - x_{50}} \right )}  \right )^{-1} $$ where $x_{50}$ and $x_{95}$ are the sizes or ages at which 50% and 95% of the maximum proportion of individuals ($P_{Max}$) are in maternal condition. Instead of being fit to data on female maturity condition the model is fit to dichotomous data on female maternal condition (non maternal / maternal).
+
+Walker [-@walker_reproduction_2005] defines individual females as being in maternal condition if they would have given birth or laid eggs by the end of a given year such that they contribute to annual recruitment (age 0+ cohort) at the beginning of the next year. Pregnancy is a necessary, but not sufficient, condition for maternity, and the two conditions are not always synonymous. For example, reproduction in the Australian population of school shark, *Galeorhinus galeus*, occurs triennially, such that approximately one third of mature females give birth annually and $P_{Max} \approx 1/3$ [@walker_reproduction_2005]. Gestation lasts 20 months, and includes a protracted period of ovulation. Newly pregnant females are not considered to be in maternal condition until the year of pre-recruitment. Walker's [-@walker_reproduction_2005] definition is specific to species that reproduce during a single, well-defined period of the year, but the concept can be generalised to accommodate asynchronously reproducing species or those that reproduce more than once a year.
+
+Numerous authors have adopted Walker's [-@walker_reproduction_2005] maternity function, including for species with biennial or longer reproductive cycles [@huveneers_reproductive_2007; @rochowski_reproductive_2015; @trinnie_reproductive_2016] as well as those with annual or shorter reproductive cycles [@trinnie_reproductive_2009; @mejia-falla_reproductive_2012; @harry_age_2013; @taylor_living_2016]. Techniques have been described for determining maternal output in asynchronously reproducing species [@braccini_determining_2006; @colonello_reproductive_2016], and maternity functions are also increasingly being used directly in shark and ray population assessments [@sedar_sedar_2012; @sedar_sedar_2017].
+
+Despite an increase in use, only a small fraction of reproductive studies in recent years have reported maternity functions, potentially due to a range of factors. Classification of maternal condition is more data-intensive than maturity condition, ideally requiring monthly sampling over a year or longer in order to establish the timing and duration of the female ovarian and uterine cycles. Such data can be difficult to collect for sharks and rays, which are often data-poor and sampled opportunistically. The teleost-oriented foundations of fisheries science have also contributed to the general lack of awareness of maternity functions; Walker (2005) is the sole description on this type of analysis for chondrichthyans and there are no primary literature sources that describe specific methods for chondrichthyan fishes.
+
+For practitioners that are aware of maternity functions, lack of information on implementation may also have discouraged use. Walker's [-@walker_reproduction_2005] approach to estimating parameters in the maternity function is difficult to reproduce, apparently due to the constraints of the proprietary statistical program first used to implement the analysis. Specifically, the method as described involves adjusting the raw data prior to parameter estimation and then weighting it during analysis [@walker_reproduction_2005]. Additionally, the use of a fixed value for $P_{Max}$, as in the original analysis, has the potential to bias parameter estimates and reduce their standard errors [@motulsky_fitting_2004]. Alternative approaches to estimating maternal parameters have also arisen in the literature, indicative of a lack of guidance on implementation. For example, some authors have obtained maternity parameters by fitting a 2PLF to maternity data [@baremore_reproduction_2012; @baremore_reproduction_2013].
+
+A consequence of the low uptake in use of maternity functions is that most practitioners undertaking population assessments invariably take an *ad hoc* approach to quantifying maternal reproductive output. This typically involves approximating maternal output using a maturity function. Under such an approach all mature females are tacitly assumed to reproduce in each breeding season [@cortes_demographic_1998]. Non-annual reproduction is accounted for by weighting fecundity or the maturity function by the assumed (but often unknown) duration of the reproductive cycle [-@walker_reproduction_2005]. In some cases, calculations of reproductive output may use the age-at-first-reproduction, defined as the mean age at maturity plus the gestation period [@mollet_comparative_2002]. This accounts for the protracted gestation period of many chondrichthyans, but still assumes that all individuals begin reproducing immediately after maturity. Measures of annual reproductive output that follow this approach are hence built upon a series of assumptions that are rarely tested in practice.
+
+## Revisiting the maternity function
+
+Wider use of maternity functions in studies of chondrichthyan reproductive biology is needed to improve calculation of reproductive capacity in the quantitative population assessments that are increasingly being used to support fisheries management and prioritize conservation actions [@cortes_population_2012]. It may also help address the lack of empirical data on the periodicity of chondrichthyan reproductive cycles. Historically, reproductive periodicity has only been determined qualitatively, and has been assumed to be fixed (e.g. annual, biennial), despite observations of plasticity in this trait within discrete populations [@higgs_reproductive_2020]. Information on reproductive periodicity is contained within maternal data, however the existing approach of fixing $P_{Max}$ in maternity functions prevents statistical inference from being made on these data. Changes to the way in which maternity functions are implemented may also contribute to quantifying uncertainty in reproductive frequency and help understand the temporal stability of reproductive cycles. To date only a single study on spiny dogfish, *Squalus acanthias*, has statistically estimated $P_{Max}$ from data [@colonello_reproductive_2016], and the feasibility of doing so for a wider range of species has not been investigated.
+
+This study revisits the use of maternity functions with the objectives of providing guidance on implementation and appropriate use. To address this objective a combination of simulated and empirical data were used to 1) evaluate the performance of two alternative methods for estimating maternity parameters, subject to varying reproductive frequency, sample size, and gear selectivity, 2) illustrate the effect of not using using maternity functions on calculations of lifetime reproductive output, and 3) outline strategies for making inferences on reproductive frequency from maternity data.
+
+# Methods
+
+## Approach
+
+To assess the feasibility of estimating maternity parameters a simulation study was done using the 3PLF to generate data for populations with varying reproductive frequencies (Figure 1). Simulations were conducted for a range of gear selectivities and sample sizes reflective of those typically available in reproductive studies and fishery sampling programs. The performance of three methods in estimating 'true' maternity parameters from simulated data was tested by examining precision, bias, and interval coverage. To illustrate the effects of misspecifying maternity parameters, lifetime reproductive output was calculated for each simulated population using parameters derived from each of the methods, and by substituting maturity parameters for maternity parameters. Finally, empirical data from previously published studies were reanalysed to illustrate possible strategies for estimating maternity parameters and making inferences on reproductive frequency. All simulation modelling and data analysis was conducted using the R language [@rcoreteam_r:_2018] and the Template Model Builder (TMB) R package [@kristensen_tmb:_2016].
+
+```{r out.width = '100%', fig.cap = "Approach used to generate simulated data and test the performance of four methods for calculating maternity parameters. "}
+knitr::include_graphics(here("img","figure1.png"))
+```
+
+## Simulation
+
+### Data generation
+
+Data were generated for the gummy shark, *Mustelus antarcticus*, and school shark, *Galeorhinus galeus*, using parameters from studies conducted on southern Australian populations (Table 1) [@grant_estimation_1979; @kirkwood_gill_1986; @moulton_age_1992; @walker_fishery_1992; @punt_stock_1998; @walker_reproduction_2005; @walker_spatial_2007]. Both species are well-studied and were chosen to be representative of r- and K-selected chondrichthyan life history styles, respectively [@stevens_variable_1999].
+
+Catch at length data were simulated using a female-only, length-based catch curve model [@L3Assess]. The approach involved calculating expected survival and catches per recruit subject to specified life history parameters, gear selectivity, and total mortality. Growth was modelled using a von Bertalanffy growth function with length *l*, of a fish of age, *a*, calculated as $$l(a) = L_\infty (1- e^{-K(a-a_0)})$$
+
+where $L_\infty$ is asymptotic length, *K* is the growth coefficient and $a_0$ is the hypothetical age at zero length. Recruitment into the population was assumed to occur at age 0 with length conforming to a normal distribution. The proportion of fish in length class, *l*, at age, $a = 0$, was calculated as $$\theta_k = \int_{l^-_k}^{l^+_k}f_{a=0}(l)dl$$ where $l^-$ and $l^+$ are the lower and upper limits of each 1cm length class, *k*. $f_{a=0}(l)$ is the value of the normal probability density function at age $a = 0$ for a given length, *l*,$$f_{a=0}(l) = \frac{1}{\sigma\sqrt{2{\pi}}}\exp\bigg[\frac{(l-\mu)^2}{2\sigma^2}\bigg]
+$$
+
+where mean length, $\mu$, was caclulated from the growth curve. The standard deviation, $\sigma$ was not available for either species so was assumed to be directly proportional to length, with a constant of proportionality of 5% (Table 1), i.e. $\sigma = 0.05 \mu$.
+
+Growth in subsequent age classes was modelled using a length transition matrix [@punt1997; @hall2000], $G = g_{j,k}$ that represents the probability that a fish in length class, $j$, will grow into length class, $k$, over a specified time interval $$ G = \begin{bmatrix}
+ g_{1,1}&0& 0 &0\\ 
+ g_{2,1}& g_{2,2} & 0  &0 \\ 
+ \cdots&\cdots  & \ddots  & 0\\ 
+ g_{n,1}& g_{n,2} & \cdots & g_{n,n}
+\end{bmatrix}$$
+
+where the elements of the matrix followed the general form of Punt *et al* [-@punt1997] and are given by$$ g_{k,j} = \left\{
+    \begin{array}{ll}
+        \int_{{\infty}^-}^{\mathrm{l_{k}^+}}f[\phi(l,j)]dl & \mbox{if }k=1 \\
+        \int_{l_{k}^-}^{\mathrm{l_{k}^+}}f[\phi(l,j)]dl &\mbox{if }k=1<k<n \\
+\int_{l_{k}^-}^{\mathrm{\infty^+}}f[\phi(l,j)]dl &\mbox{if }k=n \\
+    \end{array}
+\right.
+$$
+
+where *l* is mean length, *f* is the specified normal distribution, $\mathrm{l_{k}^-}$ and $\mathrm{l_{k}^+}$ are the lower and upper limits of length class *j*, and $\phi$ is a vector of parameters.
+
+Selectivity in the model was assumed to follow a gamma function based on gillnet selectivity experiments [@kirkwood_gill_1986; @punt_stock_1998], where the selectivity of an individual in length class, $l$ was given by $$S(l) = \left [ \frac{l}{\theta_1 \theta_2} \right ]^{\theta_1 }exp(\theta_1-\frac{l}{\theta_2}) $$ where $\theta_1$ and $\theta_2$ are estimated parameters [@kirkwood_gill_1986]. Two selectivity scenarios were simulated corresponding to low and high selectivity of the maternal component of the population. For consistency between species, gillnet mesh sizes were chosen that would result in peak relative selectivity occurring at the lengths equal to 5% and 95% of the population in maternal condition (Table 1).
+
+Fishing mortality, *F*, in length class *l*, was calculated as $$F(l) = S(l) \cdot F$$where $F$ was assumed to be constant and nominally set to 25% of natural mortality, $M$ (i.e. $0.25M$). The effects of varying levels of $F$ were not investigated further in this study. Total mortality, *Z,* in length class, *l*, was further given by $$Z(l) = F(l)\cdot{M} $$
+
+The number of fish, $N$, per recruit in length class, *l,* that survived to age, *a*, was calculated as
+
+$$ N_{l,a} = \left\{    \begin{array}{ll}        1 & \mbox{if }a=0 \\        N_{l,a-1}\exp(-Z_{l}) &\mbox{if }a=1<a<A \\        N_{l,a-1}\exp(-Z_{l})/(1-\exp(-Z_{l})) &\mbox{if }a=A \\    \end{array}\right.$$
+
+The estimated numbers of fish caught in length class, l, at age, a, was calculated using the Baranov catch equation as
+
+$$
+\hat{C}_{l} = \sum_a(F_{l}/Z_{l})(1-\exp(-Z_{l}))N_{l,a}
+$$
+
+To examine the effect of varying sample size, six scenarios were conducted with catch ranging from 50 to 2500 individuals, reflecting a gradient from data poor to rich.
+
+Next, maturity-at-length data, $\psi(l)$, were randomly generated by simulating from a Bernoulli distribution, $\Psi(l) \sim B(P)$, where $P$ was given by the 2PLF: $$P =  \left ( 1 + e^{-ln(19)\left ( \frac{l - L_{50}}{L_{95} - L_{50}} \right )}  \right )^{-1}$$ This processes was then repeated to generate maternity-at-length data, $\Psi'(l)$, using the 3PLF: $$\Psi' \sim B(P)$$ $$P =  P_{Max}\left ( 1 + e^{-ln(19)\left ( \frac{l(a) - L'_{50}}{L'_{95} - L'_{50}} \right )}  \right )^{-1}$$ Finally, 250 iterations were run for each of the 144 unique variables combinations.
+
+### Estimation approaches
+
+Two approaches to estimating maternity parameters were compared, the 3PLF itself (3PLF-free) and the 3PLF function with a fixed asymptote (3PLF-fixed). Additionally, two approaches using a 2PLF were also examined, using maternity-at-length data (2PLF-maternity) and maturity-at-length data (2PLF maturity). The 3PLF-free method was examined to validate the utility of this model, which has so far been used in only a single study [@colonello_reproductive_2016]. The 3PLF-fixed is the method described by Walker [-@walker_reproduction_2005] and most commonly used in practice. The 2PLF-maternity method was used to examine what effect simply ignoring the upper asmyptote had (i.e. $P_{Max}$ fixed at 1). The 2PLF-maturity method is tacitly assumed if using mature females to approximate maternal ones. The resulting maturity curve can then by weighted by the proportion of gravid females to calculate annual reproductive output (although in practice annual fecundity is more often modified, for example halved for a species suspected to reproduce biennially).
+
+Only the 3PLF-free method involves statistically estimating $P_{Max}$, which must be subjectively chosen in the case of the 3PLF-fixed and the 2PLF-maturity. $P_{Max}$ is ideally chosen based on detailed study of the ovarian and uterine cycles [@walker_reproduction_2005], or alternatively based on the proportion of mature females observed to be in maternal condition during sampling [@baremore_reproduction_2012; @harry_age_2013; @trinnie_reproductive_2016]. For the purposes of the simulation, the timing and duration of the uterine and ovarian cycles were assumed to be unknown. The following procedure was used to 'guess' the fixed value of $P_{Max}$ in each simulation. $P_{Max}$ was chosen as the proportion of females in maternal condition above a the length at which $99\%$ of females were mature, $L > \Psi(L_{99\%})$. If this failed (e.g. zero pregnant females), $L_{95}$ was used, followed by $L_{50}$, and finally the proportion of all mature females in the sample that were in maternal condition. Statistical estimation of all non-fixed parameters in each of the methods was undertaken using maximum likelihood. Nonparametric bootstrapping was used to calculate approximate 50% confidence intervals for the best-fit parameters from 250 resampled data sets.
+
+### Reproductive output
+
+For each iteration, the per-generation rate of multiplication, $R_0$, or lifetime female pup production, was calculated as: $$R_0 =\int_{0}^{\infty}R\beta(a)e^{\int_{0}^{a}M ds}da $$ where $R$ and $M$ are the embryonic sex ratio and natural mortality rate (Table 1) and $\beta(a)$ is the age-specific reproductive rate which incorporates $\Psi'(L)$ [@xiao_demographic_2000].
+
+### Performance
+
+Model performance was evaluated in each iteration where 1) the fitted model successfully converged as indicated by a positive definite Hessian matrix, and 2) the estimated parameters $L_{50}'$ and $L_{95}'$ remained within specified bounds ($0 - 10^4$). An iteration was also not attempted if there were no maternal females in the randomly generated sample. Model performance was evaluated by quantifying precision, bias, and interval coverage for $L'_{50}$, $P_{Max}$ and $R_0$. Bias was quantified using the mean relative error, $\text{MRE} = \text{mean}[(x_{\text{Estimated}} - x_{\text{True}})/x_{\text{True}}]$ and precision using the mean absolute relative error, $\text{MARE} = \text{mean}|[(x_{\text{Estimated}} - x_{\text{True}})/x_{\text{True}}]|$. Interval coverage measures the ability of the model to capture uncertainty and was calculated by taking the proportion of the estimated parameters for each simulation that fell within the 50% confidence intervals [@rudd_accounting_2018]. For a well-performing model, approximately 50% of parameters would be expected to fall withing the nominal 50% confidence intervals.
+
+### Empirical case study
+
+An empirical case study was also undertaken to show how maternity functions can be used in practice. Data from two studies of the reproductive biology of the sandbar shark, *Carcharhinus plumbeus*, in the Gulf of Mexico and western North Atlantic Ocean were combined and reanalysed using both 3PLF methods. The sandbar shark is a relatively long-lived ($A_{Max}$ = 33 years) and slow growing species ($K = 0.12 \text{yr}^{-1}$) that was thought to have a biennial reproductive cycle [@springer_natural_1960]. The Gulf of Mexico and western North Atlantic Ocean population has been considered overfished since the late 1970s [@sminkey_age_1995] and during the 2000s detailed studies of sandbar shark reproductive biology and growth were undertaken for stock assessment purposes [@baremore_reproduction_2012; @piercy_histological_2016]. In their study, Baremore and Hale [-@baremore_reproduction_2012] estimated maternity parameters using the 2PLF-maternity method, weighting the final curve by 0.37 based on the proportion of pregnant females observed, most closely aligning with a triennial reproductive cycle. Piercy *et al* [-@piercy_histological_2016] did not estimate maternity parameters but also suggested that the average reproductive cycle was likely to be longer than two years based on examination of ovarian follicles. To examine relative support for either a biennial or triennial reproductive cycle, 3PLF-fixed models were fit with $P_{Max}$ estimated and fixed at 0.5 and 0.33, respectively.
+
+# Results
+
+## Simulation study
+
+Parameter estimation was generally straightforward; with sample sizes $> 100$ a success rate of $\geq 95\%$ was achieved in all scenarios except the 2PLF-maternity method for gummy shark (Figure S1, Table S1). Overall, convergence and parameter boundary failures were most common with the 2PLF-maternity method which essentially involved fitting data to an under-parameterized model where $P_{Max}$ was always fixed at 1. In addition to convergence failures, 7 simulations also generated insufficient maternal data (zero or one maternal females in the simulated data), and were discarded.
+
+Generally when using the 3PLF methods model performance declined as the periodicity of the reproductive cycle increased. The nature of this problem can be seen in the positive correlation between the $\hat{L'_{50}}$ and $\hat{P_{Max}}$ parameters whereby $P_{Max}$ affects the magnitude and direction of bias in these parameters (Figure 2). With lower values of $P_{Max}$ it was apparently more difficult for the model to separate the point of inflection in the logistic model and the upper asymptote. As true underlying $P_{Max}$ decreased there was a greater potential for positive bias in $\hat{P_{Max}}$ (Figure 2).
+
+```{r fig.width = 7, fig.height= 5.5, fig.cap= "Bias (per cent relative error) in parameter estimates for $\\hat{L'_{50}}$ and $\\hat{P_{Max}}$ for 3PLF methods. Each point represents parameter estimates from one iteration of simulated data. Bias tended to increase as the true underlying $P_{Max}$ decreased."}
+data <- read_rds(here("data", "simulations-pivot.Rds"))
+
+ggplot() + 
+  geom_point(data = data, aes(x = rel_error_c, y = rel_error_m50, col = repro_freq)) +
+  scale_color_viridis_d(option = "D", direction = 1) + 
+  facet_grid(species~method_long) + 
+  ylim(-30, 50) +
+  guides(colour = guide_legend(bquote(atop(paste(plain("True "),italic(P)[Max]),("Reproductive frequency"))))) + 
+  theme_bw() +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center") + 
+  xlab(expression("% relative error "~hat(italic(P)[Max]))) +
+  ylab(expression("% relative error "~hat(italic(L^"'")[50])))
+```
+
+For the 3PLF methods, parameter estimates tended to be biased high at lower sample sizes (Figure S2, Figure S3). Fixing the asymptote was effective at reducing bias at sample sizes $\leq$ 250, although above this neither method was clearly preferable. The accuracy of parameter estimates varied considerably across different combinations of variables used in the simulation and among parameters (Figure S4, Figure S5). For $L'_{50}$ gains in precision tended to diminish at sample sizes $\geq$ 500. $P_{Max}$ was comparatively more challenging to estimate accurately, with precision continuing to improve noticeably at the largest sample sizes (Figure 3).
+
+```{r fig.width = 7, fig.height= 5.5, fig.cap = "Precision (per cent absolute error) in parameter estimates  of $\\hat{P_{Max}}$ for 3PLF methods. Large sample sizes were needed to accurately estimate $\\hat{P_{Max}}$ and precision decreased as the duration of the reproductive cycle increased "}
+data <- read_rds(here("data", "simulations-summarised.Rds"))
+
+data %>% 
+  filter(par_name %in% "c") %>% 
+  filter(method_long %in% c("3PLF - free", "3PLF - fixed")) %>% 
+  filter(mesh_name %in% "high") %>% 
+  ggplot() +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) + 
+  facet_grid(species ~ method_long) + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  theme_bw() + 
+  labs(x = "Sample size", y = "Mean % absolute relative error") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+
+While the 3PLF-fixed method was in some cases able to reduce bias at lower sample sizes, a trade off in the use of this method was poorer interval coverage (Figure 4, Figure S6). For most simulations, interval coverage for $L'_{50}$ was well below the expected level of 50%, irrespective of sample size. In contrast, for the 3PLF-free method interval coverage oscillated around 50% for both $L'_{50}$ and $P_{Max}$.
+
+```{r fig.width = 7, fig.height= 5.5, fig.cap = "Interval coverage for $\\hat{L'_{50}}$ for 3PLF methods. Figure shows the percentage of simulations where the true parameter value fell within the 50% bootstrap confidence interval. "}
+data %>% 
+  filter(par_name %in% "m50", method_long %in% c("3PLF - free", "3PLF - fixed")) %>% 
+  filter(mesh_name %in% "high") %>% 
+  ggplot() +
+  geom_hline(yintercept = 50, linetype = "dashed") +
+  geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) +
+  geom_line(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) + 
+  facet_grid(species ~ method_long, scales = "free_y") + 
+  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  theme_bw() + 
+  labs(x = "Sample size", y = "% interval coverage") +
+  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+```
+
+Differences in life history and gear selectivity played an important role in the ability to obtain precise and unbiased maternity parameters. Certain combinations of variables in the simulated data resulted in low numbers of females in maternal or immature condition making parameter estimation difficult (Figure S8, Figure S9). These effects were not necessarily consistent between species and seemed to reflect differences in the underlying population length structure. For example, in high selectivity scenarios for gummy sharks \~10% of individuals were immature (Figure S9) compared to \~50% in the corresponding scenarios for school sharks. As $P_{Max}$ decreased the proportion of both maternal females and immature females in the analysis also decreased. The latter effect was due to the right shift in length structure associated with the proportionally fewer juveniles in the population.
+
+Overall, the 2PLF-maternity method performed the worst. Ignoring $P_{Max}$ was equivalent to introducing a fixed bias in this parameter that increased in magnitude as reproductive periodicity increased (Figure S3). This manifested in an overestimation of $L'_{50}$ that was exacerbated by gear selectivity effects (Figure S2). In contrast, using a maturity function to approximate the maternity function (2PLF-maturity method) resulted in relatively good performance. $L_{50}$ could usually be estimated with a higher precision than $L'_{50}$. For the gummy shark, where $L_{50}$ and $L'_{50}$ were relatively similar, using the 2PLF-maturity method led to a constant underestimate of $L'_{50}$ of approximately 2% and exceeding the performance of the 3PLF-methods at sample sizes \< 250.
+
+The effect of the different methods in ultimately calculating $R_0$ varied considerably and was strongly influenced by life history and selectivity characteristics. Greater precision was achieved with the 3PLF methods, with the 3PLF-free method generally performing best (Figure 5, Figure S11). For gummy sharks the 3PLF-fixed method was the preferred model at lower sample sizes and lower values of $P_{Max}$, consistent with decreasing performance of 3PLF methods as $P_{Max}$ decreased (Figure 2, Figure 3).
+
+```{r fig.width = 9, fig.height= 3.5, fig.cap = "Performance of alternative maternity functions in accurately calculating $R_0$. The best performing method was that which minimised mean absolute error across 250 simulated datasets. Note 2PLF-maternity (Annual) scenarios were excluded for this comparison."}
+
+read_rds(here("data", "simulations-summarised.Rds")) %>% 
+  filter(!(method_long %in% "2PLF - maternity" & repro_freq %in% "1 (Annual)")) %>% 
+  mutate(Nsamples_sel = fct_cross(as.factor(mesh_name), as.factor(Nsamples))) %>% 
+  filter(par_name %in% "r_0") %>% group_by(species, Nsamples_sel, repro_freq) %>% 
+  slice_min(abs_error) %>%
+  ggplot() + 
+  geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = method_long)) + 
+  scale_fill_viridis_d() + 
+  guides(fill = guide_legend(title = "Method")) + 
+  facet_wrap(~species, nrow = 1) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) + 
+  labs(x = "Selectivity: Sample size", y = bquote(atop(italic(P)[Max],("Reproductive frequency")))) 
+```
+
+Calculations of $R_0$ for the 3PLF methods were generally unbiased with sample sizes $\geq 250$, and neither method clearly outperformed the other (Figure S10, Figure 6). As anticipated, the 2PLF-maternity method performed the worst overall and ignoring $P_{Max}$ consistently led to $R_0$ being overestimated. This effect was particularly pronounced for gummy sharks under low selectivity scenarios where derived $R_0$ was more than double the true value. Using maturity data to approximate maternal data (2PLF-maturity method) also consistently overestimated $R_0$, as expected since $L_{50}$ was less than $L'_{50}$. However, the magnitude of bias was relatively small in some cases. For the gummy shark, where $L_{50}$ and $L'_{50}$ were relatively similar, this method frequently outperformed the 3PLF methods (Figure 6).
+
+```{r fig.width = 9, fig.height= 3.5, fig.cap = "Performance of alternative maternity functions in minimising bias in calculations of $R_0$. The preferred method was that which minimised bias, $|\\text{relative error}|$ across 250 simulated datasets. Note 2PLF-maternity (Annual) scenarios were excluded for this comparison."}
+
+read_rds(here("data", "simulations-summarised.Rds")) %>% 
+  filter(!(method_long %in% "2PLF - maternity" & repro_freq %in% "1 (Annual)")) %>% 
+  mutate(Nsamples_sel = fct_cross(as.factor(mesh_name), as.factor(Nsamples))) %>% 
+  filter(par_name %in% "r_0") %>% group_by(species, Nsamples_sel, repro_freq) %>% 
+  slice_min(abs(rel_error)) %>% 
+  ggplot() + 
+  geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = method_long)) + 
+  scale_fill_viridis_d() + 
+  guides(fill = guide_legend(title = "Method")) + 
+  facet_wrap(~species, nrow = 1) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) + 
+  labs(x = "Selectivity: Sample size", y = bquote(atop(italic(P)[Max],("Reproductive frequency")))) 
+```
+
+## Empirical case study
+
+Maternal data were re-analysed for `r nrow(plumbeus)` sandbar sharks including `r length(which(plumbeus$Stage > 2))` mature individuals of which `r round(100 * (length(which(plumbeus$z == 1)) / length(which(plumbeus$Stage > 2))))`% were in maternal condition. Using the 3PLF-free method the maximum likelihood estimate for $\hat{P_{Max}}$ was 0.48 (Table 2). Despite having a sample size of \> 600 mature females, the proportion of maternal individuals at length was still uncertain and $\hat{P_{Max}}$ was estimated to lie between 0.39 and 0.60 with 95% confidence. Comparison of 3PLF-fixed models with values of $P_{Max} = 0.33$ and $P_{Max} = 0.5$ showed much greater support for a biennial cycle ($\Delta_{AIC}$ = 9.4). The model with $P_{Max} = 0.5$ also outperformed the 3PLF-free method ($\Delta_{AIC}$ = 1.66). Given the fixed model had one fewer estimated parameters, both models had essentially the same level of support given the data [@burnham_model_2002].
+
+```{r fig.width = 4.5, fig.height= 5, fig.cap= "Comparison of 3PLF-free and 3PLF-fixed methods used to estimate maternal parameters for sandbar shark, *C. plumbeus*, in the Gulf of Mexico and Western North Atlantic. Solid line is the expected proportion in maternal condition at length, $\\Psi'(L)$. The grey shaded region denotes 95% confidence intervals based on bootstrap resampling. $P_{Max}$ was fixed at 0.5 in the lower panel"}
+# Load data - Sandbar
+data <- read_rds(here("data", "empirical-plumbeus.Rds"))
+preds <- read_rds(here("data", "empirical-predictions.Rds"))
+
+# Bin data into length categories for plotting
+brks = seq(40, 220, 7.5)
+data_binned <- data %>%
+  mutate(x_bin = findInterval(x, brks)) %>% 
+  mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
+  group_by(x_bin) %>%
+  summarise(p = sum(z)/ n())
+
+preds1 <- filter(preds, species %in% "C. plumbeus", label %in% "3PLF - free") %>% 
+  mutate(label2 = "3PLF - free")
+
+p1 <- ggplot()  + 
+  geom_ribbon(data = preds1, aes(x = x, ymin = lower, ymax = upper), fill = "grey70") + 
+  geom_line(data = preds1, aes(x = x, y = y)) +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  ylim(0, 1) +
+  theme_bw() + 
+  labs(x = NULL, y = NULL) + 
+  facet_wrap(~label2) + 
+  theme(strip.text = element_text(hjust = 0.5))
+
+preds2 <- filter(preds, species %in% "C. plumbeus", label %in% "3PLF - fixed (PMax = 0.5)") %>%
+  mutate(label2 = "3PLF - fixed")
+
+# Plot
+p2 <- ggplot()  + 
+  geom_ribbon(data = preds2, aes(x = x, ymin = lower, ymax = upper), fill = "grey70") + 
+  geom_line(data = preds2, aes(x = x, y = y)) +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  ylim(0, 1) +
+  theme_bw() + 
+  labs(x = NULL, y = NULL) + 
+  facet_wrap(~label2) + 
+  theme(strip.text = element_text(hjust = 0.5))
+
+grid.arrange(p1, p2, left = textGrob("Proportion in maternal condition", gp = gpar(fontsize = 12, font = 8), rot = 90), bottom = textGrob("Fork length (cm)", gp = gpar(fontsize = 12, font = 8)))
+```
+
+# Discussion
+
+Relatively few reproductive biology studies have used maternity functions to model maternal reproductive output in chondrichthyan fishes. Where they have been employed the approach has typically been to use a three parameter logistic function with a fixed, user-defined value for the upper asymptote, $P_{Max}$. Here we show that it is feasible to estimate $P_{Max}$ from maternal data, in turn enabling statistical inferences on reproductive periodicity. Applying 3PLF models with estimated and fixed values of $P_{Max}$ to simulated data showed that precision, bias, and confidence interval coverage often improved when $P_{Max}$ was estimated. Using a fixed value for $P_{Max}$ resulted in lower bias at low sample sizes. This study also demonstrated that recruitment was overestimated when maturity data were used to approximate maternal data and if $P_{Max}$ was ignored when estimating maternity parameters. Based on these findings we outline considerations for practitioners using these methods and illustrate how they can provide novel insights into reproductive biology. We conclude by discussing the advantages of adopting this approach to quantifying maternal reproductive output and future directions.
+
+## Implementing maternity functions
+
+Using simulated data to compare the relative performance of the 3PLF-free and 3PLF-fixed methods subject to a range of variables showed that it was feasible to estimate $P_{Max}$ from data, but also identified situations where it may be preferable to fix $P_{Max}$. In most scenarios sample sizes of at least 250 were needed for the 3PLF-free method to approach or exceed the performance of the 3PLF-fixed method. At sample sizes below 250 it is therefore advisable to fix $P_{Max}$. Due to the decline in performance associated with longer reproductive cycles, sample sizes of at least 500 are desirable before attempting to estimate $P_{Max}$ in species with a triennial or longer reproductive cycle.
+
+While the estimation of maternity parameters in most simulations was possible, it was difficult to do so accurately. Outcomes of the simulation study suggested that samples sizes of $\geq1000$ would be needed to estimate $P_{Max}$ with \<10% MARE for a triennially reproducing species. This is a much larger error than is achievable from conventional logistic maturity analysis [@roa_estimation_1999]. In the case of the gummy shark this imprecision led to the 2PLF-maturity method performing comparably or better than the 3PLF methods in ultimately quantifying $R_0$. Relatively wide confidence intervals were also obtained for $P_{Max}$ in the empirical analysis for sandbar sharks, even with a sample size of \> 1000. A similar sample size was used by Colonello *et al* [-@colonello_reproductive_2016] to successfully estimate $P_{Max}$ and maternity parameters for south Atlantic spiny dogfish. These results suggest that data requirements of the 3PLF analyses may be prohibitively large for many chondrichthyans and therefore best suited to use on commercially captured species where large sample sizes can be obtained [@oddone_size_2010; @tribuzio_life_2012].
+
+In light of the data requirements suggested by this study, the current practice of using maturity parameters as a proxy for maternity parameters will likely still be the only option for numerous data-poor chondrichthyans. From this perspective, the outperformance of the 3PLF-methods by the 2PLF-methods for the gummy shark in several simulations is encouraging. However, the extent to which maturity parameters can provide a good approximation of maternity parameters may be species-specific, depending on how close $L_{50}$ is to $L'_{50}$. While several studies have shown these parameters to be similar [@walker_spatial_2007; @soto-lopez_reproductive_2018], $L'_{50}$ is more frequently shifted to the right of $L_{50}$ [@braccini_determining_2006; @palacios-hernandez_temporal_2020; @montealegre-quijano_sexual_2014; @colonello_reproductive_2016], and this length difference can equate to one or more years. For example, Harry *et al* [-@harry_age_2013] found both spot-tail shark, *C. sorrah*, and Australian blacktip shark, *C. tilstoni*, began reproducing the year after reaching sexual maturity. Similarly, Fujiyama found $A'_{50}$ to be 1.4 years older than $A_{50}$ in blue sharks.
+
+More research is needed to understand the relationship between size at maturity and maternity and variability within and among taxa. In general, this study confirms Walker's [-@walker_reproduction_2005] assertion that the common practice of weighting the maturity curve by the frequency of parturition overestimates recruitment. This study also confirms that fitting a 2PLF to maternal data when $P_{Max} < 1$ (effectively ignoring $P_{Max}$) is likely to result in biased parameters and can also overestimate recruitment. While not widely used, this approach has been undertaken in several studies [@mejia-falla_reproductive_2012; @baremore_reproduction_2012; @baremore_reproduction_2013; @rambahiniarison_life_2018].
+
+The success of any analysis using the 3PLF-free method, and its ability to outperform the 3PLF-fixed method, ultimately depends on the analyst choosing a suitable value for $P_{Max}$. In this study, the value for $P_{Max}$ used in the fixed analyses was chosen based on the proportion of maternal females observed in the simulated data. The potential to introduce a greater level of bias in the analysis through the incorrect selection of $P_{Max}$ should also be considered if using this approach.
+
+## Empirical study
+
+The empirical analysis carried out using data for the sandbar shark illustrates the potential for the 3PLF-free method to provide novel insights from maternal data. Detailed reproductive studies of the western North Atlantic population by Baremore and Hale [-@baremore_reproduction_2012] and Piercy *et al* [-@piercy_histological_2016] were ambiguous about the frequency of reproduction. In both studies, the low proportion of pregnant females and bimodality in ovarian follicle size led the authors to conclude that the reproductive cycle was most commonly triennial or longer at the population level. Reanalysis of these combined data sets using the 3PLF-free method, however, resulted in a maximum likelihood estimate of $P_{Max} = 0.48$, most consistent with biennial cycle. Using AIC values to compare the relative plausibility of 3PLF-fixed models corresponding to biennial and triennial cycles also strongly supported a biennial cycle.
+
+This counter intuitive result appears to be due to the gradual attainment of maternal status as a function of length in sandbar sharks. $L'_{5}$ and $L'_{95}$ occur at 146cm and 176cm, respectively, a length interval that corresponds to around seven years given the sandbar shark's slow growth rate [@hale_age_2013]. It therefore appears that the shape of the maternity curve is not just due to individuals differing in their size at maturity, but can also be attributed to smaller females reproducing less frequently. Larger females, in contrast, appear capable of reproducing biennially. This finding has important management implications that would not otherwise be apparent if using a maturity curve to approximate maternity data. Not only are larger females more fecund [@baremore_reproduction_2012], they also reproduce more frequently as well. This implies removal of larger and older female sharks could have a disproportionately greater impact on population productivity.
+
+## Advantages and future directions
+
+Despite the simplicity of the 3PLF-free method, it nonetheless represents a conceptual shift for chondrichthyan reproductive and population biology. Until now reproductive periodicity has largely been determined qualitatively from observations of female reproductive biology or inferred based on circumstantial evidence. Using the 3PLF-free method to estimate $P_{Max}$ within a maternity function transforms it from a nuisance parameter to one of direct inferential interest that can be seen as a valuable output of the modelling process itself. In addition to the potential benefits of using this method to improve estimation of maternal parameters, there are also a range of other advantages that arise from estimating $P_{Max}$.
+
+One major benefit of this approach is that it that it reduces the need for subjective modelling assumptions relating to $P_{Max}$. Such assumptions can have important implications for population modelling. For example, to account for uncertainty in temporal and spatial frequency of reproduction in sparsely-spotted stingarees, *Urolophus paucimaculatus*, Trinnie *et al* (2014) estimated maternity parameters for ten plausible scenarios. In stock assessment of western North Atlantic sandbar sharks a breeding frequency of 2.5 years was assumed to account for uncertainty in the duration of the reproductive cycle.
+
+More commonly, practitioners have chosen fixed values of the form $P_{Max} = 1/n$, where *n* is the apparent duration of the reproductive cycle in years. This process also has the potential to introduce bias if a small proportion of females reproduce more or less frequently that the larger population. Long-term study of offspring from genetically profiled lemon sharks, *Negaprion brevirostris*, confirmed that most individuals reproduced biennially, but also revealed some cases of triennial reproduction [@feldheim_two_2014]. Statistical estimation of $P_{Max}$ from data avoids these decisions and enables uncertainty in this parameter to be included in subsequent population models.
+
+Estimation of $P_{Max}$ using the 3PLF-free method may also be a means to resolving the longstanding question of reproductive frequency in some rare and threatened chondrichthyans. White sharks and whale shark are two examples of intensively studied species where only fragmentary observations of female reproductive biology exist [@joung_whale_1996; @sato_how_2016]. In both species lack of data on reproductive frequency is a major impediment to population modelling and the development of management strategies [@huveneers_future_2018; @bowlby_implications_2020]. With many of these populations now the focus of ongoing monitoring, non-lethal methods for assessing maternal state may eventually provide a way of collecting sufficient data for estimation of $P_{Max}$ [@sulikowski_seasonal_2016].
+
+A logical progression from estimating $P_{Max}$ is the consideration of alternative functional forms for this parameter such as time- or space-varying $P_{Max}$ or more complex length- or age-dependent forms. Despite the diverse range of reproductive modes found in chondrichthyan fishes, the current, limited knowledge of maternal investment has typically investigated variables such as litter size and pup condition [@hussey_maternal_2010]. Little is known about how reproductive frequency varies as a function of size or age, in response to environmental effects, or at changing population densities. Better understanding of these factors has the potential to improve understanding reproductive strategies and is, many cases, of direct relevance to management.
+
+# Acknowledgements
+
+John Carlson
+
+# References
