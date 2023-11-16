@@ -105,7 +105,7 @@ data <-
   ungroup() %>% 
   rename(pars = data) %>%
   # Create and number n repliactes of each row
-  mutate(reps = 6) %>% 
+  mutate(reps = 300) %>% 
   uncount(reps) %>%
   group_by(id) %>%
   mutate(iteration = row_number()) %>%
@@ -118,6 +118,7 @@ data <- read_rds("data/generated_data.rds")
 
 
 data <- data %>%
+  slice(1:10800) %>% 
   # Simulate maternal data
   mutate(data = map2(pars, data, generate_maternal_data)) %>% # How many maternal females are there in the simulated data
   mutate(n_maternal = map_dbl(data, ~ sum(.$z))) %>%
@@ -162,15 +163,16 @@ data <- data %>%
     mutate(int_coverage = ifelse(par_true >= lower & par_true <= upper, TRUE, FALSE)) %>%
     select(-xmin, -xmax, -data)
 
+write_rds(data, here("data", "simulations-gummy-1.Rds"))
 
 write_rds(data, here("data", "simulations-revised-all.Rds"))
 
-data <- read_rds("data/simulations-revised-gummy.rds")
+data <- read_rds("data/simulations-gummy.rds")
 data1 <- read_rds("data/simulations-revised-school-1.rds")
 data2 <- read_rds("data/simulations-revised-school-2.rds")
 data3 <- read_rds("data/simulations-revised-school-3.rds")
 
 data <- rbind(data, data1) %>% rbind(data2) %>% rbind(data3)
 
-write_rds(data, here("data", "simulations.Rds"))
+
 
