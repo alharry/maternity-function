@@ -22,7 +22,7 @@ data <- read_rds(here("data", "simulations.Rds")) %>%
   # Calculate total number of iterations that failed to start due to lack of data
   mutate(maternal_data_fail = low_maternal + zero_maternal) %>% 
   # Calculate total number of iterations done for each simulation
-  mutate(ntotal = 250 - maternal_data_fail) %>% 
+  mutate(ntotal = 300 - maternal_data_fail) %>% 
   select(-low_maternal, -few_maternal, -zero_maternal) %>% 
   # Now tally parameter boundary failures and non-convergence failures
   group_by(id, iteration, method) %>%
@@ -37,7 +37,7 @@ data <- read_rds(here("data", "simulations.Rds")) %>%
   mutate(method_long = case_when(
     method %in% "2" ~ "2PLF - maturity",
     method %in% "2a" ~ "2PLF - maternity",
-    method %in% "3" ~ "3PLF - free",
+    method %in% "3" ~ "3PLF - estimated",
     method %in% "3a" ~ "3PLF - fixed"
   )) %>%
   group_by(species, method_long, repro_freq, mesh_name, Nsamples, ntotal) %>%
@@ -58,7 +58,7 @@ data <- read_rds(here("data", "simulations.Rds")) %>%
   mutate(int_coverage = 100 * int_coverage / ntotal) %>% 
   ungroup() %>%
   mutate(method_long = fct_relevel(
-    method_long, "3PLF - free",
+    method_long, "3PLF - estimated",
     "3PLF - fixed",
     "2PLF - maternity",
     "2PLF - maturity"
@@ -75,11 +75,11 @@ data <- read_rds(here("data", "simulations.Rds")) %>%
   mutate(method_long = case_when(
     method %in% "2" ~ "2PLF - maturity",
     method %in% "2a" ~ "2PLF - maternity",
-    method %in% "3" ~ "3PLF - free",
+    method %in% "3" ~ "3PLF - estimated",
     method %in% "3a" ~ "3PLF - fixed"
   )) %>%
-  mutate(method_long = fct_relevel(
-    method_long, "3PLF - free",
+  test %>% mutate(method_long = fct_relevel(
+    method_long, "3PLF - estimated",
     "3PLF - fixed",
     "2PLF - maternity",
     "2PLF - maturity"

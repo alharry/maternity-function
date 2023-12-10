@@ -118,7 +118,7 @@ data <- read_rds("data/generated_data.rds")
 
 
 data <- data %>%
-  slice(1:10800) %>% 
+  slice(41401:43200) %>% 
   # Simulate maternal data
   mutate(data = map2(pars, data, generate_maternal_data)) %>% # How many maternal females are there in the simulated data
   mutate(n_maternal = map_dbl(data, ~ sum(.$z))) %>%
@@ -163,16 +163,21 @@ data <- data %>%
     mutate(int_coverage = ifelse(par_true >= lower & par_true <= upper, TRUE, FALSE)) %>%
     select(-xmin, -xmax, -data)
 
-write_rds(data, here("data", "simulations-gummy-1.Rds"))
+write_rds(data, here("data", "simulations-school-7.Rds"))
 
-write_rds(data, here("data", "simulations-revised-all.Rds"))
 
 data <- read_rds("data/simulations-gummy.rds")
-data1 <- read_rds("data/simulations-revised-school-1.rds")
-data2 <- read_rds("data/simulations-revised-school-2.rds")
-data3 <- read_rds("data/simulations-revised-school-3.rds")
+data1 <- read_rds("data/simulations-school-1.rds")
+data2 <- read_rds("data/simulations-school-2.rds")
+data3 <- read_rds("data/simulations-school-3.rds")
+data4 <- read_rds("data/simulations-school-4.rds")
+data5 <- read_rds("data/simulations-school-5.rds")
+data6 <- read_rds("data/simulations-school-6.rds")
+data7 <- read_rds("data/simulations-school-7.rds")
 
-data <- rbind(data, data1) %>% rbind(data2) %>% rbind(data3)
+data <- rbind(data, data1) %>% rbind(data2) %>% rbind(data3) %>% 
+  rbind(data4) %>% rbind(data5) %>% rbind(data6) %>% rbind(data7)
 
+write_rds(data, here("data", "simulations.Rds"))
 
 

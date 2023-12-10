@@ -475,7 +475,6 @@ r_0 <- function(a, df, df2 = NULL) {
 # Did any parameters hit boundaries?
 par_check <- function(df){
   any(ifelse(filter(df, par_name %in% c("m50", "m95"))$par_est %in% c(0, 10000), TRUE, FALSE))
-  
 }
 
 

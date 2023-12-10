@@ -136,7 +136,7 @@ preds1 <- output %>%
   group_by(x) %>%
   summarise(lower = quantile(y, 0.05), upper = quantile(y, 0.975)) %>%
   mutate(y = (opt$par[3] / (1 + exp(-log(19) * ((x - opt$par[1]) / (opt$par[2] - opt$par[1])))))) %>%
-  mutate(label = "3PLF - free") %>%
+  mutate(label = "3PLF - estimated") %>%
   mutate(species = "C. plumbeus")
 
 # Get 95% confidence intervals around each estimated parameter
@@ -148,7 +148,7 @@ summary1 <- output %>%
     upper = quantile(pars, 1 - 0.05 / 2)
   ) %>%
   cbind(est = c(opt$par[3], opt$par[-3])) %>%
-  mutate(method = "3PLF - free") %>%
+  mutate(method = "3PLF - estimated") %>%
   mutate(species = "C. plumbeus") %>%
   mutate(AIC = opt_aic)
 
