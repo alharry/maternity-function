@@ -96,7 +96,7 @@ Figure S5.
 \newpage
 
 ```{r fig.width = 12, fig.height=7}
-ggplot(data %>% filter(par_name %in% "m50", method_long %in% c("3PLF - free", "3PLF - fixed"))) +
+ggplot(data %>% filter(par_name %in% "m50", method_long %in% c("3PLF - estimated", "3PLF - fixed"))) +
   geom_hline(yintercept = 50, linetype = "dashed") +
   geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) +
   geom_line(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) + 
@@ -113,7 +113,7 @@ Figure S6.
 \newpage
 
 ```{r fig.width = 12, fig.height=5}
-ggplot(data %>% filter(par_name %in% "c", method_long %in% c("3PLF - free"))) +
+ggplot(data %>% filter(par_name %in% "c", method_long %in% c("3PLF - estimated"))) +
   geom_hline(yintercept = 50, linetype = "dashed") +
   geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) +
   geom_line(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) + 
@@ -131,7 +131,7 @@ Figure S7.
 
 
 ```{r, fig.width = 11, fig.height = 8.5}
-filter(data, method_long %in% c("3PLF - free", par_name %in% "c")) %>% 
+filter(data, method_long %in% c("3PLF - estimated", par_name %in% "c")) %>% 
   ggplot() + 
   geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = n_maternal)) + 
   geom_text(aes(x = as.factor(Nsamples_sel), y = repro_freq, label = round(n_maternal, 0))) +
@@ -146,7 +146,7 @@ Figure S8. Median number of females in maternal condition in simulated data that
 \newpage
 
 ```{r, fig.width = 11, fig.height = 8.5}
-filter(data, method_long %in% c("3PLF - free", par_name %in% "c")) %>% 
+filter(data, method_long %in% c("3PLF - estimated", par_name %in% "c")) %>% 
 ggplot() + 
   geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = n_immature)) + 
   geom_text(aes(x = as.factor(Nsamples_sel), y = repro_freq, label = round(n_immature, 0))) +
