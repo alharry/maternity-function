@@ -1,7 +1,6 @@
 ---
 title: "Maternity Function"
 format: gfm
-editor: visual
 ---
 
 ## Quarto
