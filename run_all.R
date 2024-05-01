@@ -5,7 +5,7 @@ library(knitr)
 library(rmarkdown)
 
 # Data analysis
-source(here::here("code", "simulation.R")) # 48 hour run time on my computer
+source(here::here("code", "simulation.R"))
 source(here::here("code", "summarise-results.R"))
 source(here::here("code", "empirical.R"))
 

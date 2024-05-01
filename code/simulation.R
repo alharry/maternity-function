@@ -118,7 +118,6 @@ data <- read_rds("data/generated_data.rds")
 
 
 data <- data %>%
-  slice(41401:43200) %>% 
   # Simulate maternal data
   mutate(data = map2(pars, data, generate_maternal_data)) %>% # How many maternal females are there in the simulated data
   mutate(n_maternal = map_dbl(data, ~ sum(.$z))) %>%
