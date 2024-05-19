@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = "center")
 source(here::here("code", "setup.R"))
 
 data <- read_rds(here("data", "simulations-summarised.Rds")) %>% 
-  mutate(Nsamples_sel = fct_cross(as.factor(mesh_name), as.factor(Nsamples)))
+  mutate(Nsamples_sel = fct_cross(factor(mesh_name, levels = c("low", "high")), as.factor(Nsamples)))
 ```
 
 ## Figures
@@ -73,10 +73,10 @@ ggplot(data %>% filter(par_name %in% "m50")) +
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
-  labs(x = "Sample size", y = "Mean % absolute relative error", title = expression("Precision - Length at 50% maternity")) +
+  labs(x = "Sample size", y = "Mean % absolute relative error", title = expression("Accuracy - Length at 50% maternity")) +
   theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
-Figure S4. Precision (per cent absolute error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. 
+Figure S4. Accuracy (per cent absolute error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. 
 
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "c")) +
@@ -89,10 +89,10 @@ ggplot(data %>% filter(par_name %in% "c")) +
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
-  labs(x = "Sample size", y = "Mean % absolute relative error", title = expression("Precision - "~italic(P)[Max])) +
+  labs(x = "Sample size", y = "Mean % absolute relative error", title = expression("Accuracy - "~italic(P)[Max])) +
   theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
-Figure S5. Precision (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. 
+Figure S5. Accuracy (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. 
 \newpage
 
 ```{r fig.width = 12, fig.height=7}
@@ -189,7 +189,7 @@ Figure S10. Bias (per cent relative error) in $R_{0}$ calculated using maternity
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
-  labs(x = "Sample size", y = "Mean % relative absolute error", title = "Precision - Reproductive Output") +
+  labs(x = "Sample size", y = "Mean % relative absolute error", title = "Accuracy - Reproductive Output") +
   theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
-Figure S11. Precision (per cent absolute error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets
+Figure S11. Accuracy (per cent absolute error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets

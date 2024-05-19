@@ -1,26 +1,42 @@
-# Maternity Function
+# Quantifying maternal reproductive output of chondrichthyan fishes
 
-
-## Quarto
 
 Quarto enables you to weave together content and executable code into a
 finished document. To learn more about Quarto see <https://quarto.org>.
 
-## Running Code
+## Example
 
-When you click the **Render** button a document will be generated that
-includes both content and the output of embedded code. You can embed
-code like this:
+Load data for sandbar sharks.
 
 ``` r
-1 + 1
+library(tidyverse)
+
+data <- read_rds(here::here("data", "empirical-plumbeus.Rds"))
 ```
 
-    [1] 2
+# Bin data into length categories for plotting
 
-You can add options to executable code like this
+``` r
+brks = seq(40, 220, 7.5)
+data_binned <- data %>%
+  mutate(x_bin = findInterval(x, brks)) %>% 
+  mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
+  group_by(x_bin) %>%
+  summarise(p = sum(z)/ n())
+```
 
-    [1] 4
+Compile 3 parameter logistic model
+
+``` r
+library(TMB)
+compile("code/logistic3.cpp")
+```
+
+    [1] 0
+
+``` r
+dyn.load(dynlib("code/logistic3"))
+```
 
 The `echo: false` option disables the printing of code (only output is
 displayed).

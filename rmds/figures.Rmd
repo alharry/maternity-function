@@ -59,7 +59,7 @@ data %>%
   labs(x = "Sample size", y = "Mean % absolute relative error") +
   theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
-Figure 3. Precision (per cent absolute error) in parameter estimates  of $\hat{P_{Max}}$ for 3PLF methods. Large sample sizes were needed to accurately estimate $\hat{P_{Max}}$ and precision decreased as the duration of the reproductive cycle increased. Each point reflects a mean value from 300 simulated data sets. 
+Figure 3. Accuracy (per cent absolute error) in parameter estimates  of $\hat{P_{Max}}$ for 3PLF methods. Large sample sizes were needed to accurately estimate $\hat{P_{Max}}$ and accuracy decreased as the duration of the reproductive cycle increased. Each point reflects a mean value from 300 simulated data sets. 
 \
 \
 \newpage
@@ -89,7 +89,7 @@ Figure 4. Confidence interval coverage for $\hat{L'_{50}}$ for 3PLF methods (hig
 
 read_rds(here("data", "simulations-summarised.Rds")) %>% 
   filter(!(method_long %in% "2PLF - maternity" & repro_freq %in% "1 (Annual)")) %>% 
-  mutate(Nsamples_sel = fct_cross(as.factor(mesh_name), as.factor(Nsamples))) %>% 
+  mutate(Nsamples_sel = fct_cross(factor(mesh_name, levels = c("low", "high")), as.factor(Nsamples))) %>% 
   filter(par_name %in% "r_0") %>% group_by(species, Nsamples_sel, repro_freq) %>% 
   slice_min(abs(rel_error)) %>% 
   ggplot() + 
@@ -111,7 +111,7 @@ Figure 5. Performance of alternative maternity functions in minimising bias in c
 
 read_rds(here("data", "simulations-summarised.Rds")) %>% 
   filter(!(method_long %in% "2PLF - maternity" & repro_freq %in% "1 (Annual)")) %>% 
-  mutate(Nsamples_sel = fct_cross(as.factor(mesh_name), as.factor(Nsamples))) %>% 
+  mutate(Nsamples_sel = fct_cross(factor(mesh_name, levels = c("low", "high")), as.factor(Nsamples))) %>% 
   filter(par_name %in% "r_0") %>% group_by(species, Nsamples_sel, repro_freq) %>% 
   slice_min(abs_error) %>%
   ggplot() + 
@@ -133,7 +133,7 @@ data <- read_rds(here("data", "empirical-plumbeus.Rds"))
 preds <- read_rds(here("data", "empirical-predictions.Rds"))
 
 # Bin data into length categories for plotting
-brks = seq(40, 220, 7.5)
+brks = seq(40, 220, 10)
 data_binned <- data %>%
   mutate(x_bin = findInterval(x, brks)) %>% 
   mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
@@ -174,4 +174,4 @@ p2 <- ggplot()  +
 grid.arrange(p1, p2, left = textGrob("Proportion in maternal condition", gp = gpar(fontsize = 12, font = 8), rot = 90), bottom = textGrob("Fork length (cm)", gp = gpar(fontsize = 12, font = 8)))
 ```
 
-Figure 7. Comparison of 3PLF-estimated and 3PLF-fixed methods used to estimate maternal parameters for sandbar shark, *C. plumbeus*, in the Gulf of Mexico and Western North Atlantic. Solid line is the expected proportion in maternal condition at length, $\Psi'(L)$. The grey shaded region denotes 95% confidence intervals based on bootstrap resampling. $P_{Max}$ was fixed at 0.5 in the lower panel
+Figure 7. Comparison of 3PLF-estimated and 3PLF-fixed methods used to estimate maternal parameters for sandbar shark, *C. plumbeus*, in the Gulf of Mexico and Western North Atlantic. Solid line is the expected proportion in maternal condition at length, $\Psi'(L)$. The grey shaded region denotes 95% confidence intervals based on bootstrap resampling. Black points show proportion in maternal condition in 10cm length intervals. Marginal rug plots denote raw data that models were fit to. $P_{Max}$ was fixed at 0.5 in the lower panel.

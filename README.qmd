@@ -1,25 +1,35 @@
 ---
-title: "Maternity Function"
+title: "Quantifying maternal reproductive output of chondrichthyan fishes"
 format: gfm
 ---
 
-## Quarto
-
 Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
-## Running Code
+## Example
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Load data for sandbar shark maternity data set. Rows are data from individuals sharks x is fork length (cm) and z is maternal status (0 = non maternal, 1 = maternal).
 
-```{r}
-1 + 1
+```{r message=FALSE, warning=FALSE}
+library(tidyverse)
+
+data <- read_rds(here::here("data", "empirical-plumbeus.Rds"))
 ```
 
-You can add options to executable code like this
+## Bin data into suitable length categories for plotting
 
-```{r}
-#| echo: false
-2 * 2
+```{r message=FALSE, warning=FALSE}
+brks = seq(40, 220, 7.5)
+data_binned <- data %>%
+  mutate(x_bin = findInterval(x, brks)) %>% 
+  mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
+  group_by(x_bin) %>%
+  summarise(p = sum(z)/ n())
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Compile 3 parameter logistic model
+
+```{r message=FALSE, warning=FALSE}
+library(TMB)
+compile("code/logistic3.cpp")
+dyn.load(dynlib("code/logistic3"))
+```
