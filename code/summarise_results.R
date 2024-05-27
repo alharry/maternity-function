@@ -5,25 +5,26 @@ source(here::here("code", "functions.R"))
 
 # Summarise simulation study --------------------------------------------------
 data <- read_rds(here("data", "simulations.Rds")) %>% 
-  group_by(id) %>% nest() %>% 
+  group_by(id) %>% 
+  nest() %>% 
   # How many iterations in each scenario had zero pregnant females and were excluded? 
   mutate(zero_maternal = map_dbl(data, ~ sum(.$no_maternal))) %>% 
   unnest(cols = c(data)) %>% 
   ungroup() %>% 
   filter(no_maternal == 0) %>% select(-no_maternal) %>% 
-  # How many other iterations in each scenario failed due to lack of pregnant females? 
-  mutate(few_maternal = ifelse(is.na(method), 1, 0)) %>% 
-  group_by(id) %>% 
-  nest() %>% 
-  mutate(low_maternal = map_dbl(data, ~ sum(.$few_maternal))) %>% 
-  unnest(cols = c(data)) %>% 
-  ungroup() %>% 
-  filter(!is.na(method)) %>% 
+  # # How many other iterations in each scenario failed due to lack of pregnant females? 
+  # mutate(few_maternal = ifelse(n_maternal == 1, 1, 0)) %>% 
+  # group_by(id) %>% 
+  # nest() %>% 
+  # mutate(low_maternal = map_dbl(data, ~ sum(.$few_maternal))) %>% 
+  # unnest(cols = c(data)) %>% 
+  # ungroup() %>% 
+  # filter(few_maternal == 0) %>% select(-few_maternal) %>% 
   # Calculate total number of iterations that failed to start due to lack of data
-  mutate(maternal_data_fail = low_maternal + zero_maternal) %>% 
+  mutate(maternal_data_fail =  zero_maternal) %>% 
   # Calculate total number of iterations done for each simulation
   mutate(ntotal = 300 - maternal_data_fail) %>% 
-  select(-low_maternal, -few_maternal, -zero_maternal) %>% 
+  select(-zero_maternal) %>% 
   # Now tally parameter boundary failures and non-convergence failures
   group_by(id, iteration, method) %>%
   nest() %>% 
@@ -72,13 +73,21 @@ write_rds(data, here("data", "simulations-summarised.Rds"))
 
 # Pivot table of simulation study --------------------------------------------------
 data <- read_rds(here("data", "simulations.Rds")) %>%
+  filter(no_maternal == 0) %>% select(-no_maternal) %>% 
+  # Now tally parameter boundary failures and non-convergence failures
+  group_by(id, iteration, method) %>%
+  nest() %>% 
+  # Remove iterations where boundary was hit
+  mutate(hit_boundary = map_lgl(data, par_check)) %>%
+  filter(hit_boundary %in% FALSE) %>% 
+  select(-hit_boundary) %>% 
+  unnest(cols = c(data)) %>% 
   mutate(method_long = case_when(
     method %in% "2" ~ "2PLF - maturity",
     method %in% "2a" ~ "2PLF - maternity",
     method %in% "3" ~ "3PLF - estimated",
     method %in% "3a" ~ "3PLF - fixed"
-  )) %>%
-  test %>% mutate(method_long = fct_relevel(
+  )) %>% mutate(method_long = fct_relevel(
     method_long, "3PLF - estimated",
     "3PLF - fixed",
     "2PLF - maternity",
@@ -86,7 +95,7 @@ data <- read_rds(here("data", "simulations.Rds")) %>%
   )) %>%
   filter(method %in% c("3", "3a")) %>%
   filter(convergence == 0) %>%
-  select(id, species, method_long, iteration, Nsamples, mesh_name, repro_freq, par_name, par_est, rel_error) %>%
+  select(id, species, method_long, iteration, Nsamples, mesh_name, repro_freq, par_name, par_est, rel_error, n_maternal) %>%
   pivot_wider(names_from = par_name, values_from = c(par_est, rel_error)) %>%
   ungroup() %>%
   mutate(repro_freq = as.factor(repro_freq)) %>%

@@ -128,13 +128,6 @@ generate_maternal_data <- function(pars, data){
     bind_cols("y" = data_mature$y)
 }
 
-# #
-# id = data$id
-# iteration <- data$iteration
-# n_maternal <- data$n_maternal
-# pars <- data$pars[[1]]
-# data <- data$data[[1]]
-
 
 ## Run simulations
 run_sims <- function(data, pars, n_maternal, id, iteration, ...) {

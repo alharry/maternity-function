@@ -91,7 +91,8 @@ data2 <- select(data_complete2, month, Stage, x, z) %>%
 data <- data %>% 
   ungroup() %>% select(month, Stage, x, z) %>%
   rbind(data2) %>% 
-  select(x, z) %>% 
+  mutate(y = ifelse(Stage > 2, 1, 0)) %>% 
+  select(x, y, z) %>% 
   write_rds(here("data", "empirical-plumbeus.Rds"))
 
 # Run analyses ----------------------------------------------------------------

@@ -15,32 +15,37 @@ data <- read_rds(here("data", "simulations-summarised.Rds")) %>%
 ## Figures
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "m50")) +
-  geom_point(aes(as.factor(Nsamples), conv_success, col = repro_freq, group = repro_freq)) + 
+  geom_point(aes(as.factor(Nsamples), conv_success, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), conv_success, col = repro_freq, group = repro_freq)) +
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) +
-  scale_color_brewer(palette = "Spectral") + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) + 
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Number of samples", y = "Convergence success (%)", title = "Model convergence") +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+
 ```
 Figure S1. Convergance success of alternative logistic regression models fit (n = 300) for school shark and gummy shark. 
 
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "m50")) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "Mean % relative error", title = expression("Bias - Length at 50% maternity")) +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
 Figure S2. Bias (per cent relative error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. 
@@ -48,16 +53,18 @@ Figure S2. Bias (per cent relative error) in parameter estimates of $\hat{L'_{50
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "c")) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "Mean % relative error", title = expression("Bias - "~italic(P)[Max])) +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
 Figure S3. Bias (per cent relative error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. 
@@ -65,49 +72,58 @@ Figure S3. Bias (per cent relative error) in parameter estimates of $\hat{P_{Max
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "m50")) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "Mean % absolute relative error", title = expression("Accuracy - Length at 50% maternity")) +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+
 ```
 Figure S4. Accuracy (per cent absolute error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. 
 
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "c")) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "Mean % absolute relative error", title = expression("Accuracy - "~italic(P)[Max])) +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+
 ```
 Figure S5. Accuracy (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. 
 \newpage
 
+
 ```{r fig.width = 12, fig.height=7}
 ggplot(data %>% filter(par_name %in% "m50", method_long %in% c("3PLF - estimated", "3PLF - fixed"))) +
   geom_hline(yintercept = 50, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "% interval coverage", title = expression("Interval coverage - Length at 50% maternity")) +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
 Figure S6. Confidence interval coverage for $L'_{50}$ for 3PLF methods. Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval. 
 \newpage
@@ -115,16 +131,19 @@ Figure S6. Confidence interval coverage for $L'_{50}$ for 3PLF methods. Figure s
 ```{r fig.width = 12, fig.height=5}
 ggplot(data %>% filter(par_name %in% "c", method_long %in% c("3PLF - estimated"))) +
   geom_hline(yintercept = 50, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), int_coverage, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "% interval coverage", title = expression("Interval coverage - "~italic(P)[Max])) +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+
 ```
 Figure S7. Confidence interval coverage for $P_{Max}$ for the 3PLF-estimated method. Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval. 
 \newpage
@@ -164,32 +183,56 @@ Figure S9. Median number of immature females in simulated data that were used to
 ```{r fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "r_0")) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), rel_error, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "Mean % relative error", title = "Bias - Reproductive Output") +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
 Figure S10. Bias (per cent relative error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets
 
 
 ```{r fig.width = 12, fig.height = 10}
-  ggplot(data %>% filter(par_name %in% "r_0")) +
+ggplot(data %>% filter(par_name %in% "r_0")) +
   geom_hline(yintercept = 0, linetype = "dashed") +
-  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) +
+  geom_point(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq, size = n_maternal), alpha = 0.5) +
+  scale_color_brewer(palette = "Spectral") + 
+  scale_size_continuous(breaks = c(10, 50, 250, 1250)) + 
   geom_line(aes(as.factor(Nsamples), abs_error, col = repro_freq, group = repro_freq)) + 
   facet_grid(method_long ~ species + mesh_name_long, scales = "free_y") + 
-  scale_color_brewer(palette = "Spectral") + 
-  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))))) + 
+  guides(colour = guide_legend(bquote(atop(italic(P)[Max],("Reproductive frequency"))), order = 1),
+         size = guide_legend("No. maternal females")) +  
   cowplot::theme_half_open() +
   panel_border() +
   background_grid() +
   labs(x = "Sample size", y = "Mean % relative absolute error", title = "Accuracy - Reproductive Output") +
-  theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
+
 ```
 Figure S11. Accuracy (per cent absolute error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets
+
+
+```{r fig.width = 7, fig.height= 5.5}
+data <- read_rds(here("data", "simulations-pivot.Rds")) %>% 
+  filter(method_long %in% "3PLF - estimated")
+
+ggplot() + 
+  geom_point(data = data, aes(x = rel_error_c, y = rel_error_m50, fill = repro_freq, size = n_maternal), pch = 21, alpha = 0.5) +
+  scale_size_continuous(breaks = c(2, 10, 50, 250, 1250)) + 
+  scale_fill_brewer(palette = "Spectral") + 
+  facet_grid( ~ species) + 
+  guides(fill = guide_legend(title = bquote(atop(paste(plain("True "),italic(P)[Max]),("Reproductive frequency"))), order = 1), size = guide_legend("No. maternal females")) + 
+  theme_bw() +
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center") + 
+  xlab(expression("% relative error "~hat(italic(P)[Max]))) +
+  ylab(expression("% relative error "~hat(italic(L^"'")[50])))
+``` 
+
+Figure S12. Uncropped version of Figure 2. Bias (per cent relative error) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for the 3PLF maternity function with $P_{Max}$ estimated. Each point represents parameter estimates from one iteration of simulated data, including all combinations of variables. Simulations with longer reproductive cycles and fewer maternal females, were associated with higher bias in both parameters $\hat{L'_{50}}$ and $\hat{P_{Max}}$. 
