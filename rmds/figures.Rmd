@@ -62,7 +62,7 @@ data %>%
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
 
-Figure 3. Accuracy (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ for 3PLF methods. Large sample sizes were needed to accurately estimate $\hat{P_{Max}}$ and accuracy decreased as the duration of the reproductive cycle increased. Each point reflects a mean value from 300 simulated data sets.\
+Figure 3. Accuracy (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ for 3PLF methods. Large sample sizes were needed to accurately estimate $\hat{P_{Max}}$ and accuracy decreased as the duration of the reproductive cycle increased. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size. \
 \
 \newpage
 
@@ -88,7 +88,7 @@ data %>%
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
 
-Figure 4. Confidence interval coverage for $\hat{L'_{50}}$ for 3PLF methods (high selectivity scenarios). Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval.\
+Figure 4. Confidence interval coverage for $\hat{L'_{50}}$ for 3PLF methods (high selectivity scenarios). Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval. Point size denotes mean number of females in maternal condition at a given sample size. \
 \
 \newpage
 
