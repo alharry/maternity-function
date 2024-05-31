@@ -37,7 +37,7 @@ ggplot() +
   ylab(expression("% relative error "~hat(italic(L^"'")[50])))
 ```
 
-Figure 2. Bias (per cent relative error) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for the 3PLF maternity function with $P_{Max}$ estimated. Each point represents parameter estimates from one iteration of simulated data (n = 43,129), including all combinations of variables. Simulations with longer reproductive cycles and fewer maternal females were associated with higher bias in both parameters $\hat{L'_{50}}$ and $\hat{P_{Max}}$. Note: 42 data points were cropped to aid with data visualization (see Figure S12 for uncropped figure).\
+Figure 2. Bias (per cent relative error) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for the 3PLF maternity function with $P_{Max}$ estimated. Each point represents parameter estimates from one iteration of simulated data (n = 43,129), including all combinations of variables. Simulations with longer reproductive cycles and fewer maternal females were associated with higher bias in both parameters $\hat{L'_{50}}$ and $\hat{P_{Max}}$. Note: 42 data points were cropped to aid with data visualization (see Figure S13 for uncropped figure).\
 \
 \newpage
 
@@ -93,9 +93,11 @@ Figure 4. Confidence interval coverage for $\hat{L'_{50}}$ for 3PLF methods with
 \newpage
 
 ```{r fig.width=7, fig.height= 4}
-(p <- ggplot(data = data %>% 
-  filter(method_long %in% c("3PLF - estimated"), par_name %in% "c"), aes(x = n_maternal, y = abs_error, col = repro_freq)) + 
-  geom_point() + 
+
+data %>% 
+  filter(method_long %in% c("3PLF - estimated"), par_name %in% "c") %>% 
+  ggplot() + 
+  geom_point(aes(x = n_maternal, y = abs_error, col = repro_freq)) +  
   scale_color_brewer(palette = "Spectral") +
   scale_y_continuous(breaks = seq(0, 90, 10)) +
   scale_x_continuous(breaks = seq(0, 1600, 200)) +
@@ -105,7 +107,7 @@ Figure 4. Confidence interval coverage for $\hat{L'_{50}}$ for 3PLF methods with
   xlab("Median number of maternal females") + 
   ylab(expression("Mean % absolute error "~hat(italic(P)[Max]))) +
   theme(legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center") +
-  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center"))
+  theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ``` 
 
 Figure 5. Accuracy (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ for the 3PLF - estimated method as a function of number of maternal females. Each point reflects a value from 300 simulated data sets.\

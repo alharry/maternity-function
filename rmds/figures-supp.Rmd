@@ -199,6 +199,24 @@ ggplot(data %>% filter(par_name %in% "r_0")) +
 Figure S10. Bias (per cent relative error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size.
 
 
+```{r}
+read_rds(here("data", "simulations-summarised.Rds")) %>% 
+  filter(!(method_long %in% "2PLF - maternity" & repro_freq %in% "1 (Annual)")) %>% 
+  mutate(Nsamples_sel = fct_cross(factor(mesh_name, levels = c("low", "high")), as.factor(Nsamples))) %>% 
+  filter(par_name %in% "r_0") %>% group_by(species, Nsamples_sel, repro_freq) %>% 
+  slice_min(abs(rel_error)) %>%
+  ggplot() + 
+  geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = method_long)) + 
+  scale_fill_brewer(palette = "Spectral") + 
+  guides(fill = guide_legend(title = "Method")) + 
+  facet_wrap(~species, nrow = 1) +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90)) + 
+  labs(x = "Selectivity: Sample size", y = bquote(atop(italic(P)[Max],("Reproductive frequency")))) 
+```
+
+Figure S11. Performance of alternative maternity functions in minimising bias in calculations of R0. The preferred method was that which minimised bias, |relative error| across 300 simulated datasets. Note 2PLF-maternity (Annual) scenarios were excluded for this comparison.
+
 ```{r fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "r_0")) +
   geom_hline(yintercept = 0, linetype = "dashed") +
@@ -216,7 +234,7 @@ ggplot(data %>% filter(par_name %in% "r_0")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S11. Accuracy (per cent absolute error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size.
+Figure S12. Accuracy (per cent absolute error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size.
 
 
 ```{r fig.width = 7, fig.height= 5.5}
@@ -235,4 +253,4 @@ ggplot() +
   ylab(expression("% relative error "~hat(italic(L^"'")[50])))
 ``` 
 
-Figure S12. Uncropped version of Figure 2. Bias (per cent relative error) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for the 3PLF maternity function with $P_{Max}$ estimated. Each point represents parameter estimates from one iteration of simulated data, including all combinations of variables. Simulations with longer reproductive cycles and fewer maternal females, were associated with higher bias in both parameters $\hat{L'_{50}}$ and $\hat{P_{Max}}$. 
+Figure S13. Uncropped version of Figure 2. Bias (per cent relative error) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for the 3PLF maternity function with $P_{Max}$ estimated. Each point represents parameter estimates from one iteration of simulated data, including all combinations of variables. Simulations with longer reproductive cycles and fewer maternal females, were associated with higher bias in both parameters $\hat{L'_{50}}$ and $\hat{P_{Max}}$. 
