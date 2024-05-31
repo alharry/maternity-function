@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.24)  25 MAY 2024 15:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024) (preloaded format=pdflatex 2024.5.29)  31 MAY 2024 08:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -207,7 +207,7 @@ Package xcolor Info: Model `wave' substituted by `hsb' on input line 1373.
 ) (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2024-01-20 v7.01h Hypertext links for LaTeX
+Package: hyperref 2024-05-23 v7.01i Hypertext links for LaTeX
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
 ) (/Users/avh/Library/TinyTeX/texmf-dist/tex/generic/pdfescape/pdfescape.sty
@@ -222,8 +222,6 @@ Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
 )) (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/hycolor/hycolor.sty
 Package: hycolor 2020-01-27 v1.10 Color options for hyperref/bookmark (HO)
-) (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/auxhook/auxhook.sty
-Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 ) (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2023-11-26 v2.56 Cross-referencing by name of section
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/refcount/refcount.sty
@@ -232,12 +230,14 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count278
+) (/Users/avh/Library/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
+Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
 \@linkdim=\dimen151
 \Hy@linkcounter=\count279
 \Hy@pagecounter=\count280
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2024-01-20 v7.01h Hyperref: PDFDocEncoding definition (HO)
+File: pd1enc.def 2024-05-23 v7.01i Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 ) (/Users/avh/Library/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -245,24 +245,24 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
 \Hy@SavedSpaceFactor=\count281
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2024-01-20 v7.01h Hyperref: PDF Unicode definition (HO)
+File: puenc.def 2024-05-23 v7.01i Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
 )
-Package hyperref Info: Option `unicode' set `true' on input line 4062.
-Package hyperref Info: Hyper figures OFF on input line 4179.
-Package hyperref Info: Link nesting OFF on input line 4184.
-Package hyperref Info: Hyper index ON on input line 4187.
-Package hyperref Info: Plain pages OFF on input line 4194.
-Package hyperref Info: Backreferencing OFF on input line 4199.
+Package hyperref Info: Option `unicode' set `true' on input line 4040.
+Package hyperref Info: Hyper figures OFF on input line 4157.
+Package hyperref Info: Link nesting OFF on input line 4162.
+Package hyperref Info: Hyper index ON on input line 4165.
+Package hyperref Info: Plain pages OFF on input line 4172.
+Package hyperref Info: Backreferencing OFF on input line 4177.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4446.
+Package hyperref Info: Bookmarks ON on input line 4424.
 \c@Hy@tempcnt=\count282
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip17
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 4784.
+LaTeX Info: Redefining \url on input line 4763.
 \XeTeXLinkMargin=\dimen152
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
@@ -272,13 +272,13 @@ Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 \Fld@menulength=\count283
 \Field@Width=\dimen153
 \Fld@charsize=\dimen154
-Package hyperref Info: Hyper figures OFF on input line 6063.
-Package hyperref Info: Link nesting OFF on input line 6068.
-Package hyperref Info: Hyper index ON on input line 6071.
-Package hyperref Info: backreferencing OFF on input line 6078.
-Package hyperref Info: Link coloring OFF on input line 6083.
-Package hyperref Info: Link coloring with OCG OFF on input line 6088.
-Package hyperref Info: PDF/A mode OFF on input line 6093.
+Package hyperref Info: Hyper figures OFF on input line 6042.
+Package hyperref Info: Link nesting OFF on input line 6047.
+Package hyperref Info: Hyper index ON on input line 6050.
+Package hyperref Info: backreferencing OFF on input line 6057.
+Package hyperref Info: Link coloring OFF on input line 6062.
+Package hyperref Info: Link coloring with OCG OFF on input line 6067.
+Package hyperref Info: PDF/A mode OFF on input line 6072.
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/base/atbegshi-ltx.sty
 Package: atbegshi-ltx 2021/01/10 v1.0c Emulation of the original atbegshi
 package with kernel methods
@@ -289,7 +289,7 @@ package with kernel methods
 )
 Package hyperref Info: Driver (autodetected): hpdftex.
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hpdftex.def
-File: hpdftex.def 2024-01-20 v7.01h Hyperref driver for pdfTeX
+File: hpdftex.def 2024-05-23 v7.01i Hyperref driver for pdfTeX
  (/Users/avh/Library/TinyTeX/texmf-dist/tex/latex/base/atveryend-ltx.sty
 Package: atveryend-ltx 2020/08/19 v1.0a Emulation of the original atveryend package
 with kernel methods
@@ -564,20 +564,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.287 ...proctext]{ref-baremore_reproduction_2012}
+l.289 ...proctext]{ref-baremore_reproduction_2012}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 287
+Underfull \hbox (badness 10000) detected at line 289
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...emore_reproduction_2012}{\citeproctext 
                                                   }
-l.287 ...proctext]{ref-baremore_reproduction_2012}
+l.289 ...proctext]{ref-baremore_reproduction_2012}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -592,20 +592,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.290 ...proctext]{ref-baremore_reproduction_2013}
+l.292 ...proctext]{ref-baremore_reproduction_2013}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 290
+Underfull \hbox (badness 10000) detected at line 292
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...emore_reproduction_2013}{\citeproctext 
                                                   }
-l.290 ...proctext]{ref-baremore_reproduction_2013}
+l.292 ...proctext]{ref-baremore_reproduction_2013}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -620,20 +620,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.293 ...teproctext]{ref-bowlby_implications_2020}
+l.295 ...teproctext]{ref-bowlby_implications_2020}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 293
+Underfull \hbox (badness 10000) detected at line 295
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...owlby_implications_2020}{\citeproctext 
                                                   }
-l.293 ...teproctext]{ref-bowlby_implications_2020}
+l.295 ...teproctext]{ref-bowlby_implications_2020}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -648,20 +648,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.296 ...eproctext]{ref-braccini_determining_2006}
+l.298 ...eproctext]{ref-braccini_determining_2006}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 296
+Underfull \hbox (badness 10000) detected at line 298
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...accini_determining_2006}{\citeproctext 
                                                   }
-l.296 ...eproctext]{ref-braccini_determining_2006}
+l.298 ...eproctext]{ref-braccini_determining_2006}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -676,20 +676,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.299 ...em[\citeproctext]{ref-burnham_model_2002}
+l.301 ...em[\citeproctext]{ref-burnham_model_2002}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 299
+Underfull \hbox (badness 10000) detected at line 301
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...{ref-burnham_model_2002}{\citeproctext 
                                                   }
-l.299 ...em[\citeproctext]{ref-burnham_model_2002}
+l.301 ...em[\citeproctext]{ref-burnham_model_2002}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -704,20 +704,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.302 ...roctext]{ref-colonello_reproductive_2016}
+l.304 ...roctext]{ref-colonello_reproductive_2016}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 302
+Underfull \hbox (badness 10000) detected at line 304
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...nello_reproductive_2016}{\citeproctext 
                                                   }
-l.302 ...roctext]{ref-colonello_reproductive_2016}
+l.304 ...roctext]{ref-colonello_reproductive_2016}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -732,20 +732,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.305 ...iteproctext]{ref-cortes_demographic_1998}
+l.307 ...iteproctext]{ref-cortes_demographic_1998}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 305
+Underfull \hbox (badness 10000) detected at line 307
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...cortes_demographic_1998}{\citeproctext 
                                                   }
-l.305 ...iteproctext]{ref-cortes_demographic_1998}
+l.307 ...iteproctext]{ref-cortes_demographic_1998}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -760,49 +760,21 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.308 ...citeproctext]{ref-cortes_population_2012}
+l.310 ...citeproctext]{ref-cortes_population_2012}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 308
+Underfull \hbox (badness 10000) detected at line 310
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...-cortes_population_2012}{\citeproctext 
                                                   }
-l.308 ...citeproctext]{ref-cortes_population_2012}
+l.310 ...citeproctext]{ref-cortes_population_2012}
                                                   
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.311 \bibitem[\citeproctext]{ref-dulvy_you_2008}
-                                                 
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 311
-[][]
- []
-
-! Undefined control sequence.
-<write> ...ite {ref-dulvy_you_2008}{\citeproctext 
-                                                  }
-l.311 \bibitem[\citeproctext]{ref-dulvy_you_2008}
-                                                 
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -817,20 +789,48 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.314 ...tem[\citeproctext]{ref-feldheim_two_2014}
+l.313 \bibitem[\citeproctext]{ref-dulvy_you_2008}
+                                                 
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 313
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...ite {ref-dulvy_you_2008}{\citeproctext 
+                                                  }
+l.313 \bibitem[\citeproctext]{ref-dulvy_you_2008}
+                                                 
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.316 ...tem[\citeproctext]{ref-feldheim_two_2014}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 314
+Underfull \hbox (badness 10000) detected at line 316
 [][]
  []
 
 ! Undefined control sequence.
 <write> ... {ref-feldheim_two_2014}{\citeproctext 
                                                   }
-l.314 ...tem[\citeproctext]{ref-feldheim_two_2014}
+l.316 ...tem[\citeproctext]{ref-feldheim_two_2014}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -845,20 +845,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.317 \bibitem[\citeproctext]{ref-frisk_life_2005}
+l.319 \bibitem[\citeproctext]{ref-frisk_life_2005}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 317
+Underfull \hbox (badness 10000) detected at line 319
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...te {ref-frisk_life_2005}{\citeproctext 
                                                   }
-l.317 \bibitem[\citeproctext]{ref-frisk_life_2005}
+l.319 \bibitem[\citeproctext]{ref-frisk_life_2005}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -873,20 +873,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.320 ...proctext]{ref-fujinami_reproductive_2017}
+l.322 ...proctext]{ref-fujinami_reproductive_2017}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 320
+Underfull \hbox (badness 10000) detected at line 322
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...inami_reproductive_2017}{\citeproctext 
                                                   }
-l.320 ...proctext]{ref-fujinami_reproductive_2017}
+l.322 ...proctext]{ref-fujinami_reproductive_2017}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -901,20 +901,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.323 ...\citeproctext]{ref-grant_estimation_1979}
+l.325 ...\citeproctext]{ref-grant_estimation_1979}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 323
+Underfull \hbox (badness 10000) detected at line 325
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...f-grant_estimation_1979}{\citeproctext 
                                                   }
-l.323 ...\citeproctext]{ref-grant_estimation_1979}
+l.325 ...\citeproctext]{ref-grant_estimation_1979}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -929,20 +929,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.326 \bibitem[\citeproctext]{ref-hale_age_2013}
+l.328 \bibitem[\citeproctext]{ref-hale_age_2013}
                                                 
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 326
+Underfull \hbox (badness 10000) detected at line 328
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...cite {ref-hale_age_2013}{\citeproctext 
                                                   }
-l.326 \bibitem[\citeproctext]{ref-hale_age_2013}
+l.328 \bibitem[\citeproctext]{ref-hale_age_2013}
                                                 
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -957,20 +957,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.329 ...m[\citeproctext]{ref-hall_modelling_2000}
+l.331 ...m[\citeproctext]{ref-hall_modelling_2000}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 329
+Underfull \hbox (badness 10000) detected at line 331
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ref-hall_modelling_2000}{\citeproctext 
                                                   }
-l.329 ...m[\citeproctext]{ref-hall_modelling_2000}
+l.331 ...m[\citeproctext]{ref-hall_modelling_2000}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -985,77 +985,21 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.332 \bibitem[\citeproctext]{ref-harry_age_2013}
+l.334 \bibitem[\citeproctext]{ref-harry_age_2013}
                                                  
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 332
+Underfull \hbox (badness 10000) detected at line 334
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ite {ref-harry_age_2013}{\citeproctext 
                                                   }
-l.332 \bibitem[\citeproctext]{ref-harry_age_2013}
+l.334 \bibitem[\citeproctext]{ref-harry_age_2013}
                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.335 ...em[\citeproctext]{ref-hesp_l3assess_2023}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 335
-[][]
- []
-
-! Undefined control sequence.
-<write> ...{ref-hesp_l3assess_2023}{\citeproctext 
-                                                  }
-l.335 ...em[\citeproctext]{ref-hesp_l3assess_2023}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.338 ...iteproctext]{ref-higgs_reproductive_2020}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 338
-[][]
- []
-
-! Undefined control sequence.
-<write> ...higgs_reproductive_2020}{\citeproctext 
-                                                  }
-l.338 ...iteproctext]{ref-higgs_reproductive_2020}
-                                                  
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1070,20 +1014,76 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.341 \bibitem[\citeproctext]{ref-hilborn1992}
+l.337 ...em[\citeproctext]{ref-hesp_l3assess_2023}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 337
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...{ref-hesp_l3assess_2023}{\citeproctext 
+                                                  }
+l.337 ...em[\citeproctext]{ref-hesp_l3assess_2023}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.340 ...iteproctext]{ref-higgs_reproductive_2020}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 340
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...higgs_reproductive_2020}{\citeproctext 
+                                                  }
+l.340 ...iteproctext]{ref-higgs_reproductive_2020}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.343 \bibitem[\citeproctext]{ref-hilborn1992}
                                               
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 341
+Underfull \hbox (badness 10000) detected at line 343
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ibcite {ref-hilborn1992}{\citeproctext 
                                                   }
-l.341 \bibitem[\citeproctext]{ref-hilborn1992}
+l.343 \bibitem[\citeproctext]{ref-hilborn1992}
                                               
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1098,20 +1098,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.344 ...[\citeproctext]{ref-hussey_maternal_2010}
+l.346 ...[\citeproctext]{ref-hussey_maternal_2010}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 344
+Underfull \hbox (badness 10000) detected at line 346
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ef-hussey_maternal_2010}{\citeproctext 
                                                   }
-l.344 ...[\citeproctext]{ref-hussey_maternal_2010}
+l.346 ...[\citeproctext]{ref-hussey_maternal_2010}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1126,20 +1126,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.347 ...\citeproctext]{ref-huveneers_future_2018}
+l.349 ...\citeproctext]{ref-huveneers_future_2018}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 347
+Underfull \hbox (badness 10000) detected at line 349
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...f-huveneers_future_2018}{\citeproctext 
                                                   }
-l.347 ...\citeproctext]{ref-huveneers_future_2018}
+l.349 ...\citeproctext]{ref-huveneers_future_2018}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1154,20 +1154,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.350 ...roctext]{ref-huveneers_reproductive_2007}
+l.352 ...roctext]{ref-huveneers_reproductive_2007}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 350
+Underfull \hbox (badness 10000) detected at line 352
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...neers_reproductive_2007}{\citeproctext 
                                                   }
-l.350 ...roctext]{ref-huveneers_reproductive_2007}
+l.352 ...roctext]{ref-huveneers_reproductive_2007}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1182,20 +1182,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.353 ...[\citeproctext]{ref-jennings_marine_2001}
+l.355 ...[\citeproctext]{ref-jennings_marine_2001}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 353
+Underfull \hbox (badness 10000) detected at line 355
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ef-jennings_marine_2001}{\citeproctext 
                                                   }
-l.353 ...[\citeproctext]{ref-jennings_marine_2001}
+l.355 ...[\citeproctext]{ref-jennings_marine_2001}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1210,104 +1210,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.356 ...item[\citeproctext]{ref-joung_whale_1996}
+l.358 ...item[\citeproctext]{ref-joung_whale_1996}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 356
+Underfull \hbox (badness 10000) detected at line 358
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...e {ref-joung_whale_1996}{\citeproctext 
                                                   }
-l.356 ...item[\citeproctext]{ref-joung_whale_1996}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.359 ...m[\citeproctext]{ref-king_fisheries_2007}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 359
-[][]
- []
-
-! Undefined control sequence.
-<write> ...ref-king_fisheries_2007}{\citeproctext 
-                                                  }
-l.359 ...m[\citeproctext]{ref-king_fisheries_2007}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.362 ...em[\citeproctext]{ref-kirkwood_gill_1986}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 362
-[][]
- []
-
-! Undefined control sequence.
-<write> ...{ref-kirkwood_gill_1986}{\citeproctext 
-                                                  }
-l.362 ...em[\citeproctext]{ref-kirkwood_gill_1986}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.365 ...[\citeproctext]{ref-kristensen_tmb:_2016}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 365
-[][]
- []
-
-! Undefined control sequence.
-<write> ...ef-kristensen_tmb:_2016}{\citeproctext 
-                                                  }
-l.365 ...[\citeproctext]{ref-kristensen_tmb:_2016}
+l.358 ...item[\citeproctext]{ref-joung_whale_1996}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1323,20 +1239,104 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.368 ...octext]{ref-mejiafalla_reproductive_2012}
+l.361 ...m[\citeproctext]{ref-king_fisheries_2007}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 368
+Underfull \hbox (badness 10000) detected at line 361
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...ref-king_fisheries_2007}{\citeproctext 
+                                                  }
+l.361 ...m[\citeproctext]{ref-king_fisheries_2007}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.364 ...em[\citeproctext]{ref-kirkwood_gill_1986}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 364
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...{ref-kirkwood_gill_1986}{\citeproctext 
+                                                  }
+l.364 ...em[\citeproctext]{ref-kirkwood_gill_1986}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.367 ...[\citeproctext]{ref-kristensen_tmb:_2016}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 367
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...ef-kristensen_tmb:_2016}{\citeproctext 
+                                                  }
+l.367 ...[\citeproctext]{ref-kristensen_tmb:_2016}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.370 ...octext]{ref-mejiafalla_reproductive_2012}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 370
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...falla_reproductive_2012}{\citeproctext 
                                                   }
-l.368 ...octext]{ref-mejiafalla_reproductive_2012}
+l.370 ...octext]{ref-mejiafalla_reproductive_2012}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1351,20 +1351,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.371 ...iteproctext]{ref-mollet_comparative_2002}
+l.373 ...iteproctext]{ref-mollet_comparative_2002}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 371
+Underfull \hbox (badness 10000) detected at line 373
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...mollet_comparative_2002}{\citeproctext 
                                                   }
-l.371 ...iteproctext]{ref-mollet_comparative_2002}
+l.373 ...iteproctext]{ref-mollet_comparative_2002}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1379,20 +1379,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.374 ...ext]{ref-montealegre-quijano_sexual_2014}
+l.376 ...ext]{ref-montealegre-quijano_sexual_2014}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 374
+Underfull \hbox (badness 10000) detected at line 376
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...gre-quijano_sexual_2014}{\citeproctext 
                                                   }
-l.374 ...ext]{ref-montealegre-quijano_sexual_2014}
+l.376 ...ext]{ref-montealegre-quijano_sexual_2014}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1407,20 +1407,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.377 ...\citeproctext]{ref-motulsky_fitting_2004}
+l.379 ...\citeproctext]{ref-motulsky_fitting_2004}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 377
+Underfull \hbox (badness 10000) detected at line 379
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...f-motulsky_fitting_2004}{\citeproctext 
                                                   }
-l.377 ...\citeproctext]{ref-motulsky_fitting_2004}
+l.379 ...\citeproctext]{ref-motulsky_fitting_2004}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1435,20 +1435,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.380 ...item[\citeproctext]{ref-moulton_age_1992}
+l.382 ...item[\citeproctext]{ref-moulton_age_1992}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 380
+Underfull \hbox (badness 10000) detected at line 382
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...e {ref-moulton_age_1992}{\citeproctext 
                                                   }
-l.380 ...item[\citeproctext]{ref-moulton_age_1992}
+l.382 ...item[\citeproctext]{ref-moulton_age_1992}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1463,20 +1463,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.383 \bibitem[\citeproctext]{ref-nosal2021}
+l.385 \bibitem[\citeproctext]{ref-nosal2021}
                                             
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 383
+Underfull \hbox (badness 10000) detected at line 385
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...\bibcite {ref-nosal2021}{\citeproctext 
                                                   }
-l.383 \bibitem[\citeproctext]{ref-nosal2021}
+l.385 \bibitem[\citeproctext]{ref-nosal2021}
                                             
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1491,76 +1491,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.386 ...item[\citeproctext]{ref-oddone_size_2010}
+l.388 ...item[\citeproctext]{ref-oddone_size_2010}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 386
+Underfull \hbox (badness 10000) detected at line 388
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...e {ref-oddone_size_2010}{\citeproctext 
                                                   }
-l.386 ...item[\citeproctext]{ref-oddone_size_2010}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.389 ...xt]{ref-palacios-hernandez_temporal_2020}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 389
-[][]
- []
-
-! Undefined control sequence.
-<write> ...hernandez_temporal_2020}{\citeproctext 
-                                                  }
-l.389 ...xt]{ref-palacios-hernandez_temporal_2020}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.392 ...teproctext]{ref-piercy_histological_2016}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 392
-[][]
- []
-
-! Undefined control sequence.
-<write> ...iercy_histological_2016}{\citeproctext 
-                                                  }
-l.392 ...teproctext]{ref-piercy_histological_2016}
+l.388 ...item[\citeproctext]{ref-oddone_size_2010}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1576,20 +1520,76 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.395 ...[\citeproctext]{ref-punt_estimating_1997}
+l.391 ...xt]{ref-palacios-hernandez_temporal_2020}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 395
+Underfull \hbox (badness 10000) detected at line 391
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...hernandez_temporal_2020}{\citeproctext 
+                                                  }
+l.391 ...xt]{ref-palacios-hernandez_temporal_2020}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.394 ...teproctext]{ref-piercy_histological_2016}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 394
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...iercy_histological_2016}{\citeproctext 
+                                                  }
+l.394 ...teproctext]{ref-piercy_histological_2016}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.397 ...[\citeproctext]{ref-punt_estimating_1997}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 397
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ef-punt_estimating_1997}{\citeproctext 
                                                   }
-l.395 ...[\citeproctext]{ref-punt_estimating_1997}
+l.397 ...[\citeproctext]{ref-punt_estimating_1997}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1604,20 +1604,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.398 \bibitem[\citeproctext]{ref-punt_stock_1998}
+l.400 \bibitem[\citeproctext]{ref-punt_stock_1998}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 398
+Underfull \hbox (badness 10000) detected at line 400
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...te {ref-punt_stock_1998}{\citeproctext 
                                                   }
-l.398 \bibitem[\citeproctext]{ref-punt_stock_1998}
+l.400 \bibitem[\citeproctext]{ref-punt_stock_1998}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1632,20 +1632,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.401 ...iteproctext]{ref-quinn_quantitative_1999}
+l.403 ...iteproctext]{ref-quinn_quantitative_1999}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 401
+Underfull \hbox (badness 10000) detected at line 403
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...quinn_quantitative_1999}{\citeproctext 
                                                   }
-l.401 ...iteproctext]{ref-quinn_quantitative_1999}
+l.403 ...iteproctext]{ref-quinn_quantitative_1999}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1660,20 +1660,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.404 ...m[\citeproctext]{ref-r_core_team_r:_2022}
+l.406 ...m[\citeproctext]{ref-r_core_team_r:_2022}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 404
+Underfull \hbox (badness 10000) detected at line 406
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ref-r_core_team_r:_2022}{\citeproctext 
                                                   }
-l.404 ...m[\citeproctext]{ref-r_core_team_r:_2022}
+l.406 ...m[\citeproctext]{ref-r_core_team_r:_2022}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1688,20 +1688,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.407 ...eproctext]{ref-rambahiniarison_life_2018}
+l.409 ...eproctext]{ref-rambahiniarison_life_2018}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 407
+Underfull \hbox (badness 10000) detected at line 409
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...mbahiniarison_life_2018}{\citeproctext 
                                                   }
-l.407 ...eproctext]{ref-rambahiniarison_life_2018}
+l.409 ...eproctext]{ref-rambahiniarison_life_2018}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1716,20 +1716,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.410 ...m[\citeproctext]{ref-rigby_patterns_2015}
+l.412 ...m[\citeproctext]{ref-rigby_patterns_2015}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 410
+Underfull \hbox (badness 10000) detected at line 412
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ref-rigby_patterns_2015}{\citeproctext 
                                                   }
-l.410 ...m[\citeproctext]{ref-rigby_patterns_2015}
+l.412 ...m[\citeproctext]{ref-rigby_patterns_2015}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1744,20 +1744,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.413 ...m[\citeproctext]{ref-roa_estimation_1999}
+l.415 ...m[\citeproctext]{ref-roa_estimation_1999}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 413
+Underfull \hbox (badness 10000) detected at line 415
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ref-roa_estimation_1999}{\citeproctext 
                                                   }
-l.413 ...m[\citeproctext]{ref-roa_estimation_1999}
+l.415 ...m[\citeproctext]{ref-roa_estimation_1999}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1772,77 +1772,21 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.416 ...roctext]{ref-rochowski_reproductive_2015}
+l.418 ...roctext]{ref-rochowski_reproductive_2015}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 416
+Underfull \hbox (badness 10000) detected at line 418
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...owski_reproductive_2015}{\citeproctext 
                                                   }
-l.416 ...roctext]{ref-rochowski_reproductive_2015}
+l.418 ...roctext]{ref-rochowski_reproductive_2015}
                                                   
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.419 ...[\citeproctext]{ref-rudd_accounting_2018}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 419
-[][]
- []
-
-! Undefined control sequence.
-<write> ...ef-rudd_accounting_2018}{\citeproctext 
-                                                  }
-l.419 ...[\citeproctext]{ref-rudd_accounting_2018}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.422 \bibitem[\citeproctext]{ref-sato_how_2016}
-                                                
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 422
-[][]
- []
-
-! Undefined control sequence.
-<write> ...cite {ref-sato_how_2016}{\citeproctext 
-                                                  }
-l.422 \bibitem[\citeproctext]{ref-sato_how_2016}
-                                                
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -1857,20 +1801,76 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.425 ...item[\citeproctext]{ref-sedar_sedar_2012}
+l.421 ...[\citeproctext]{ref-rudd_accounting_2018}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 425
+Underfull \hbox (badness 10000) detected at line 421
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...ef-rudd_accounting_2018}{\citeproctext 
+                                                  }
+l.421 ...[\citeproctext]{ref-rudd_accounting_2018}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.424 \bibitem[\citeproctext]{ref-sato_how_2016}
+                                                
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 424
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...cite {ref-sato_how_2016}{\citeproctext 
+                                                  }
+l.424 \bibitem[\citeproctext]{ref-sato_how_2016}
+                                                
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.427 ...item[\citeproctext]{ref-sedar_sedar_2012}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 427
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...e {ref-sedar_sedar_2012}{\citeproctext 
                                                   }
-l.425 ...item[\citeproctext]{ref-sedar_sedar_2012}
+l.427 ...item[\citeproctext]{ref-sedar_sedar_2012}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1885,20 +1885,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.428 ...item[\citeproctext]{ref-sedar_sedar_2017}
+l.430 ...item[\citeproctext]{ref-sedar_sedar_2017}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 428
+Underfull \hbox (badness 10000) detected at line 430
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...e {ref-sedar_sedar_2017}{\citeproctext 
                                                   }
-l.428 ...item[\citeproctext]{ref-sedar_sedar_2017}
+l.430 ...item[\citeproctext]{ref-sedar_sedar_2017}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1913,20 +1913,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.431 ...item[\citeproctext]{ref-sedar_sedar_2023}
+l.433 ...item[\citeproctext]{ref-sedar_sedar_2023}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 431
+Underfull \hbox (badness 10000) detected at line 433
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...e {ref-sedar_sedar_2023}{\citeproctext 
                                                   }
-l.431 ...item[\citeproctext]{ref-sedar_sedar_2023}
+l.433 ...item[\citeproctext]{ref-sedar_sedar_2023}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1941,20 +1941,48 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.434 ...item[\citeproctext]{ref-sminkey_age_1995}
+l.436 ...ext]{ref-10.1371ux2fjournal.pone.0246734}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 434
+Underfull \hbox (badness 10000) detected at line 436
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...x2fjournal.pone.0246734}{\citeproctext 
+                                                  }
+l.436 ...ext]{ref-10.1371ux2fjournal.pone.0246734}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.439 ...item[\citeproctext]{ref-sminkey_age_1995}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 439
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...e {ref-sminkey_age_1995}{\citeproctext 
                                                   }
-l.434 ...item[\citeproctext]{ref-sminkey_age_1995}
+l.439 ...item[\citeproctext]{ref-sminkey_age_1995}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1969,20 +1997,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.437 ...octext]{ref-soto-lopez_reproductive_2018}
+l.442 ...octext]{ref-soto-lopez_reproductive_2018}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 437
+Underfull \hbox (badness 10000) detected at line 442
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...lopez_reproductive_2018}{\citeproctext 
                                                   }
-l.437 ...octext]{ref-soto-lopez_reproductive_2018}
+l.442 ...octext]{ref-soto-lopez_reproductive_2018}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1997,20 +2025,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.440 ...\citeproctext]{ref-springer_natural_1960}
+l.445 ...\citeproctext]{ref-springer_natural_1960}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 440
+Underfull \hbox (badness 10000) detected at line 445
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...f-springer_natural_1960}{\citeproctext 
                                                   }
-l.440 ...\citeproctext]{ref-springer_natural_1960}
+l.445 ...\citeproctext]{ref-springer_natural_1960}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2025,20 +2053,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.443 ...\citeproctext]{ref-stevens_variable_1999}
+l.448 ...\citeproctext]{ref-stevens_variable_1999}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 443
+Underfull \hbox (badness 10000) detected at line 448
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...f-stevens_variable_1999}{\citeproctext 
                                                   }
-l.443 ...\citeproctext]{ref-stevens_variable_1999}
+l.448 ...\citeproctext]{ref-stevens_variable_1999}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2053,104 +2081,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.446 ...teproctext]{ref-sulikowski_seasonal_2016}
+l.451 ...teproctext]{ref-sulikowski_seasonal_2016}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 446
+Underfull \hbox (badness 10000) detected at line 451
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ulikowski_seasonal_2016}{\citeproctext 
                                                   }
-l.446 ...teproctext]{ref-sulikowski_seasonal_2016}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.449 \bibitem[\citeproctext]{ref-swenson2024}
-                                              
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 449
-[][]
- []
-
-! Undefined control sequence.
-<write> ...ibcite {ref-swenson2024}{\citeproctext 
-                                                  }
-l.449 \bibitem[\citeproctext]{ref-swenson2024}
-                                              
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.452 ...octext]{ref-taylor_stockrecruitment_2013}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 452
-[][]
- []
-
-! Undefined control sequence.
-<write> ...r_stockrecruitment_2013}{\citeproctext 
-                                                  }
-l.452 ...octext]{ref-taylor_stockrecruitment_2013}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.455 ...em[\citeproctext]{ref-taylor_living_2016}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 455
-[][]
- []
-
-! Undefined control sequence.
-<write> ...{ref-taylor_living_2016}{\citeproctext 
-                                                  }
-l.455 ...em[\citeproctext]{ref-taylor_living_2016}
+l.451 ...teproctext]{ref-sulikowski_seasonal_2016}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2166,20 +2110,104 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.458 ...em[\citeproctext]{ref-tribuzio_life_2012}
+l.454 \bibitem[\citeproctext]{ref-swenson2024}
+                                              
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 454
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...ibcite {ref-swenson2024}{\citeproctext 
+                                                  }
+l.454 \bibitem[\citeproctext]{ref-swenson2024}
+                                              
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.457 ...octext]{ref-taylor_stockrecruitment_2013}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 458
+Underfull \hbox (badness 10000) detected at line 457
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...r_stockrecruitment_2013}{\citeproctext 
+                                                  }
+l.457 ...octext]{ref-taylor_stockrecruitment_2013}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.460 ...em[\citeproctext]{ref-taylor_living_2016}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 460
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...{ref-taylor_living_2016}{\citeproctext 
+                                                  }
+l.460 ...em[\citeproctext]{ref-taylor_living_2016}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.463 ...em[\citeproctext]{ref-tribuzio_life_2012}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 463
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...{ref-tribuzio_life_2012}{\citeproctext 
                                                   }
-l.458 ...em[\citeproctext]{ref-tribuzio_life_2012}
+l.463 ...em[\citeproctext]{ref-tribuzio_life_2012}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2194,20 +2222,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.461 ...eproctext]{ref-trinnie_reproductive_2009}
+l.466 ...eproctext]{ref-trinnie_reproductive_2009}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 461
+Underfull \hbox (badness 10000) detected at line 466
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...innie_reproductive_2009}{\citeproctext 
                                                   }
-l.461 ...eproctext]{ref-trinnie_reproductive_2009}
+l.466 ...eproctext]{ref-trinnie_reproductive_2009}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2222,20 +2250,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.464 \bibitem[\citeproctext]{ref-trinnie2014}
+l.469 \bibitem[\citeproctext]{ref-trinnie2014}
                                               
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 464
+Underfull \hbox (badness 10000) detected at line 469
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ibcite {ref-trinnie2014}{\citeproctext 
                                                   }
-l.464 \bibitem[\citeproctext]{ref-trinnie2014}
+l.469 \bibitem[\citeproctext]{ref-trinnie2014}
                                               
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2250,20 +2278,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.467 ...eproctext]{ref-trinnie_reproductive_2016}
+l.472 ...eproctext]{ref-trinnie_reproductive_2016}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 467
+Underfull \hbox (badness 10000) detected at line 472
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...innie_reproductive_2016}{\citeproctext 
                                                   }
-l.467 ...eproctext]{ref-trinnie_reproductive_2016}
+l.472 ...eproctext]{ref-trinnie_reproductive_2016}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2278,20 +2306,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.470 ...m[\citeproctext]{ref-walker_fishery_1992}
+l.475 ...m[\citeproctext]{ref-walker_fishery_1992}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 470
+Underfull \hbox (badness 10000) detected at line 475
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ref-walker_fishery_1992}{\citeproctext 
                                                   }
-l.470 ...m[\citeproctext]{ref-walker_fishery_1992}
+l.475 ...m[\citeproctext]{ref-walker_fishery_1992}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2306,20 +2334,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.473 ...teproctext]{ref-walker_reproduction_2005}
+l.478 ...teproctext]{ref-walker_reproduction_2005}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 473
+Underfull \hbox (badness 10000) detected at line 478
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...alker_reproduction_2005}{\citeproctext 
                                                   }
-l.473 ...teproctext]{ref-walker_reproduction_2005}
+l.478 ...teproctext]{ref-walker_reproduction_2005}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2334,76 +2362,20 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.476 ...m[\citeproctext]{ref-walker_spatial_2007}
+l.481 ...m[\citeproctext]{ref-walker_spatial_2007}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 476
+Underfull \hbox (badness 10000) detected at line 481
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ref-walker_spatial_2007}{\citeproctext 
                                                   }
-l.476 ...m[\citeproctext]{ref-walker_spatial_2007}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.479 \bibitem[\citeproctext]{ref-winton2014}
-                                             
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 479
-[][]
- []
-
-! Undefined control sequence.
-<write> ...bibcite {ref-winton2014}{\citeproctext 
-                                                  }
-l.479 \bibitem[\citeproctext]{ref-winton2014}
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Lonely \item--perhaps a missing list environment.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.482 ...\citeproctext]{ref-xiao_demographic_2000}
-                                                  
-Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-
-Underfull \hbox (badness 10000) detected at line 482
-[][]
- []
-
-! Undefined control sequence.
-<write> ...f-xiao_demographic_2000}{\citeproctext 
-                                                  }
-l.482 ...\citeproctext]{ref-xiao_demographic_2000}
+l.481 ...m[\citeproctext]{ref-walker_spatial_2007}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2419,20 +2391,76 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.485 ...m[\citeproctext]{ref-zuur_analyzing_2007}
+l.484 \bibitem[\citeproctext]{ref-winton2014}
+                                             
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 484
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...bibcite {ref-winton2014}{\citeproctext 
+                                                  }
+l.484 \bibitem[\citeproctext]{ref-winton2014}
+                                             
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.487 ...\citeproctext]{ref-xiao_demographic_2000}
                                                   
 Try typing  <return>  to proceed.
 If that doesn't work, type  X <return>  to quit.
 
 
-Underfull \hbox (badness 10000) detected at line 485
+Underfull \hbox (badness 10000) detected at line 487
+[][]
+ []
+
+! Undefined control sequence.
+<write> ...f-xiao_demographic_2000}{\citeproctext 
+                                                  }
+l.487 ...\citeproctext]{ref-xiao_demographic_2000}
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Lonely \item--perhaps a missing list environment.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.490 ...m[\citeproctext]{ref-zuur_analyzing_2007}
+                                                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Underfull \hbox (badness 10000) detected at line 490
 [][]
  []
 
 ! Undefined control sequence.
 <write> ...ref-zuur_analyzing_2007}{\citeproctext 
                                                   }
-l.485 ...m[\citeproctext]{ref-zuur_analyzing_2007}
+l.490 ...m[\citeproctext]{ref-zuur_analyzing_2007}
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -2447,18 +2475,18 @@ L3 programming layer <2024-05-08>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 14157 strings out of 475910
- 222759 string characters out of 5788508
+ 14292 strings out of 475910
+ 224997 string characters out of 5788508
  1938904 words of memory out of 5000000
- 35863 multiletter control sequences out of 15000+600000
- 640502 words of font info for 209 fonts, out of 8000000 for 9000
+ 35995 multiletter control sequences out of 15000+600000
+ 640820 words of font info for 211 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  83i,12n,93p,2030b,537s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi5.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr5.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr6.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr8.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmss9.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy5.pfb></Users/avh/Library/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb>
-Output written on manuscript.pdf (28 pages, 396250 bytes).
+Output written on manuscript.pdf (28 pages, 398200 bytes).
 PDF statistics:
- 383 PDF objects out of 1000 (max. 8388607)
- 310 compressed objects within 4 object streams
+ 387 PDF objects out of 1000 (max. 8388607)
+ 313 compressed objects within 4 object streams
  52 named destinations out of 1000 (max. 500000)
- 45233 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 47281 words of extra memory for PDF output out of 51595 (max. 10000000)
 

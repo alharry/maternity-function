@@ -29,7 +29,7 @@ ggplot(data %>% filter(par_name %in% "m50")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S1. Convergance success of alternative logistic regression models fit (n = 300) for school shark and gummy shark. 
+Figure S1. Convergance success of alternative logistic regression models fit (n = 300) for school shark and gummy shark. Point size denotes mean number of females in maternal condition at a given sample size.
 
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "m50")) +
@@ -48,7 +48,7 @@ ggplot(data %>% filter(par_name %in% "m50")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S2. Bias (per cent relative error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. 
+Figure S2. Bias (per cent relative error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size.
 
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "c")) +
@@ -67,7 +67,7 @@ ggplot(data %>% filter(par_name %in% "c")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S3. Bias (per cent relative error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. 
+Figure S3. Bias (per cent relative error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. Point size denotes mean number of females in maternal condition at a given sample size.
 
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "m50")) +
@@ -86,7 +86,7 @@ ggplot(data %>% filter(par_name %in% "m50")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S4. Accuracy (per cent absolute error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. 
+Figure S4. Accuracy (per cent absolute error) in parameter estimates of $\hat{L'_{50}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size.
 
 ```{r, fig.width = 12, fig.height = 10}
 ggplot(data %>% filter(par_name %in% "c")) +
@@ -105,7 +105,7 @@ ggplot(data %>% filter(par_name %in% "c")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S5. Accuracy (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. 
+Figure S5. Accuracy (per cent absolute error) in parameter estimates of $\hat{P_{Max}}$ using alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Note 2PLF-maturity and 3PLF-fixed methods both used pre-specified values for $P_{Max}$ and are identical. Point size denotes mean number of females in maternal condition at a given sample size.
 \newpage
 
 
@@ -125,7 +125,7 @@ ggplot(data %>% filter(par_name %in% "m50", method_long %in% c("3PLF - estimated
   labs(x = "Sample size", y = "% interval coverage", title = expression("Interval coverage - Length at 50% maternity")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
-Figure S6. Confidence interval coverage for $L'_{50}$ for 3PLF methods. Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval. 
+Figure S6. Confidence interval coverage for $L'_{50}$ for 3PLF methods. Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval. Point size denotes mean number of females in maternal condition at a given sample size.
 \newpage
 
 ```{r fig.width = 12, fig.height=5}
@@ -145,7 +145,7 @@ ggplot(data %>% filter(par_name %in% "c", method_long %in% c("3PLF - estimated")
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S7. Confidence interval coverage for $P_{Max}$ for the 3PLF-estimated method. Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval. 
+Figure S7. Confidence interval coverage for $P_{Max}$ for the 3PLF-estimated method. Figure shows the percentage of simulations (n = 300) where the true parameter value fell within the 50% bootstrap confidence interval. Point size denotes mean number of females in maternal condition at a given sample size.
 \newpage
 
 
@@ -196,7 +196,7 @@ ggplot(data %>% filter(par_name %in% "r_0")) +
   labs(x = "Sample size", y = "Mean % relative error", title = "Bias - Reproductive Output") +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 ```
-Figure S10. Bias (per cent relative error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets
+Figure S10. Bias (per cent relative error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size.
 
 
 ```{r fig.width = 12, fig.height = 10}
@@ -216,7 +216,7 @@ ggplot(data %>% filter(par_name %in% "r_0")) +
   theme(legend.box = "vertical", legend.position = "bottom", legend.direction = "horizontal", legend.justification = "center")
 
 ```
-Figure S11. Accuracy (per cent absolute error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets
+Figure S11. Accuracy (per cent absolute error) in $R_{0}$ calculated using maternity parameters obtained from alternative logistic regression models. Each point reflects a mean value from 300 simulated data sets. Point size denotes mean number of females in maternal condition at a given sample size.
 
 
 ```{r fig.width = 7, fig.height= 5.5}

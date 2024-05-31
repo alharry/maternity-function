@@ -1,6 +1,6 @@
 data <- read_rds(here("data", "simulations-summarised.Rds")) %>% 
   #filter(!(method_long %in% "2PLF - maternity" & repro_freq %in% "1 (Annual)")) %>% 
-  #filter(method_long %in% c("3PLF - estimated")) %>% 
+  filter(method_long %in% c("3PLF - estimated", "3PLF - fixed")) %>% 
   mutate(Nsamples_sel = fct_cross(factor(mesh_name, levels = c("low", "high")), as.factor(Nsamples))) %>% 
   mutate(n_maternal_cut = cut(n_maternal, breaks = seq(0, 1600, 20))) %>% 
   filter(par_name %in% "r_0") %>% group_by(species, Nsamples_sel, repro_freq) %>% 
@@ -8,7 +8,7 @@ data <- read_rds(here("data", "simulations-summarised.Rds")) %>%
 
 data %>% 
   ggplot() + 
-  geom_tile(aes(x = as.factor(n_maternal_cut), y = repro_freq, fill = method_long)) + 
+  geom_tile(aes(x = as.factor(Nsamples_sel), y = repro_freq, fill = method_long)) + 
   #scale_fill_brewer(palette = "Spectral") + 
   scale_fill_viridis_d() + 
   guides(fill = guide_legend(title = "Method")) + 
