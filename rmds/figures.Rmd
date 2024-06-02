@@ -37,7 +37,7 @@ ggplot() +
   ylab(expression("% relative error "~hat(italic(L^"'")[50])))
 ```
 
-Figure 2. Bias (per cent relative error) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for the 3PLF maternity function with $P_{Max}$ estimated. Each point represents parameter estimates from one iteration of simulated data (n = 43,129), including all combinations of variables. Simulations with longer reproductive cycles and fewer maternal females were associated with higher bias in both parameters $\hat{L'_{50}}$ and $\hat{P_{Max}}$. Note: 42 data points were cropped to aid with data visualization (see Figure S13 for uncropped figure).\
+Figure 2. Bias (per cent relative error) in parameter estimates for $\hat{L'_{50}}$ and $\hat{P_{Max}}$ for the 3PLF maternity function with $P_{Max}$ estimated. Each point represents parameter estimates from one iteration of simulated data (n = 43,129), including all combinations of variables. Simulations with longer reproductive cycles and fewer maternal females were associated with higher bias in both $\hat{L'_{50}}$ and $\hat{P_{Max}}$. Note: 42 data points were cropped to aid with data visualization (see Figure S13 for uncropped figure).\
 \
 \newpage
 

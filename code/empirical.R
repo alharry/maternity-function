@@ -82,14 +82,14 @@ ggplot() +
   geom_point(data = filter(data_complete2, Stage %in% c(4, 5)), aes(x = month, y = puplen, col = as.factor(Stage))) +
   scale_x_continuous(breaks = seq(0, 12, 2))
 
-data2 <- select(data_complete2, month, Stage, x, z) %>%
+data2 <- select(data_complete2, month, Stage, x, z) 
   filter(!is.na(x), !is.na(z))
 
 # Joing Ivy and Andrew's data
 
 # Tidy up data 
 data <- data %>% 
-  ungroup() %>% select(month, Stage, x, z) %>%
+  ungroup() %>% select(month, Stage, x, z)
   rbind(data2) %>% 
   mutate(y = ifelse(Stage > 2, 1, 0)) %>% 
   select(x, y, z) %>% 
