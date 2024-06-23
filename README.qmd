@@ -7,6 +7,10 @@ format: gfm
 
 Accepted scientific manuscript:
 
+Repository structure
+
+fs::dir_tree()
+
 # Empirical example
 
 ## Load data

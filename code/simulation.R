@@ -111,13 +111,7 @@ data <-
   mutate(iteration = row_number()) %>%
   ungroup() %>% 
   # Generate simulated length data
-  mutate(data = map2(pars, id, generate_data))
-
-write_rds(data, "data/generated_data.rds")
-data <- read_rds("data/generated_data.rds")
-
-
-data <- data %>%
+  mutate(data = map2(pars, id, generate_data)) %>%
   # Simulate maternal data
   mutate(data = map2(pars, data, generate_maternal_data)) %>% # How many maternal females are there in the simulated data
   mutate(n_maternal = map_dbl(data, ~ sum(.$z))) %>%
@@ -161,21 +155,6 @@ data <- data %>%
     # 50 % interval coverage
     mutate(int_coverage = ifelse(par_true >= lower & par_true <= upper, TRUE, FALSE)) %>%
     select(-xmin, -xmax, -data)
-
-write_rds(data, here("data", "simulations-school-7.Rds"))
-
-
-data <- read_rds("data/simulations-gummy.rds")
-data1 <- read_rds("data/simulations-school-1.rds")
-data2 <- read_rds("data/simulations-school-2.rds")
-data3 <- read_rds("data/simulations-school-3.rds")
-data4 <- read_rds("data/simulations-school-4.rds")
-data5 <- read_rds("data/simulations-school-5.rds")
-data6 <- read_rds("data/simulations-school-6.rds")
-data7 <- read_rds("data/simulations-school-7.rds")
-
-data <- rbind(data, data1) %>% rbind(data2) %>% rbind(data3) %>% 
-  rbind(data4) %>% rbind(data5) %>% rbind(data6) %>% rbind(data7)
 
 write_rds(data, here("data", "simulations.Rds"))
 

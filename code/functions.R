@@ -17,101 +17,7 @@ save_sim_data <- function(df, id) {
   write_rds(df, paste0(dir_out, "/population-structure.rds"))
 }
 
-## The continuous time Lotka equation (Xiao and Walker 2000)
-continuous_lotka <- function(a, Lambda, df) {
 
-  # Length at age function
-  len <- function(a) {
-    df$Linf * (1 - exp(-df$K * (a - df$t0)))
-  }
-
-  # Maternity at age function
-  maternity <- function(a) {
-    (df$c / (1 + exp(-log(19) * ((len(a) - df$m50) / (df$m95 - df$m50)))))
-  }
-
-  # Fecundity at age function
-  fecundity <- function(a) {
-    if (df$species == "School shark") {
-      df$f + df$g * len(a)
-    } else {
-      df$f * exp(df$g * len(a))
-    }
-  }
-
-  # Birth function
-  birth <- function(a) {
-    if (df$species == "School shark") {
-      ifelse(a >= 11.2404, fecundity(a) * maternity(a) * (1 / 2), 0)
-    } else {
-      ifelse(a >= 3.9694, fecundity(a) * maternity(a) * (1 / 2), 0)
-    }
-  }
-
-  # Intrinsic rate of population decrease with age
-  LAMBDA <- function(a) {
-    rep(Lambda, length(a))
-  }
-
-  # Sum to optimize
-  birth(a) * exp(sapply(a, function(x) {
-    integrate(LAMBDA, 0, x)$value
-  }))
-}
-
-## Function for solving Lotka equation
-solve_lotka <- function(df, Lambda = 0) {
-  Integral <- integrate(continuous_lotka, 0, Inf, Lambda = Lambda, df = df)$value
-  dif <- abs(1 - Integral)
-  return(dif)
-}
-
-## Function for optimizing Lotka equation
-optimize_lotka <- function(df, lower = -2, upper = 0) {
-  lambda <- optimize(solve_lotka, c(lower, upper), df = df)$minimum
-  return(list(lambda = lambda))
-}
-
-## Function for generating simulated length and age data
-generate_data <- function(df, id, Return = FALSE) {
-  df <- df %>%
-    mutate(lambda = optimize_lotka(df)$lambda)
-
-  # Convert selectivity parameters
-  df <- df %>%
-    mutate(eta = -0.5 * (theta1 * mesh - sqrt(theta1^2 * mesh^2 + 4 * theta2))) %>%
-    mutate(rho = (theta1 * mesh) / eta)
-
-  # Initialise an age structure based on the
-  # stable age distribution
-  N_stable <- -df$lambda * exp(df$lambda * 0:100)
-  N_stable <- ((N_stable / sum(N_stable)) * df$N0) %>% round()
-
-  ages <- 0:100
-
-  dat <- tibble(N = c(rep(1, length(N_stable)), N_stable), age = c(ages, ages)) %>%
-    group_by(age) %>%
-    expand(ID = full_seq(N, 1), age) %>%
-    filter(age %in% ages[which(N_stable != 0)]) %>%
-    select(-ID) %>%
-    ungroup() %>%
-    mutate(len = df$Linf * (1 - exp(-df$K * (age - df$t0)))) %>%
-    mutate(len = len + rnorm(n(), 0, df$cv_l * len)) %>%
-    mutate(sel = (len / (df$rho * df$eta))^df$rho * exp(df$rho - len / df$eta)) %>%
-    save_sim_data(id = id)
-  
-  return(dat)
-}
-
-## Randomly sample from length structure
-sample_data <- function(df, data){
-  data %>% 
-  sample_n(df$Nsamples, weight = sel) %>%
-  arrange(len) %>%
-  select(x = len) %>%
-  mutate(y = NA) %>%
-  arrange(x)
-}
 
 ## Optimize objective function
 opt_fun <- function(obj) {
@@ -355,8 +261,6 @@ util_func_5 <- function(pars, par_est, convergence, ...) {
 }
 
 
-# Need to have a look at this, in particular whether non-convergent bootstraps
-# should be filtered out... 
 
 resampler <- function(data, convergence, obj, method, prop_pregnant, id, iteration, ...) {
   if (convergence == 0) {

@@ -8,92 +8,16 @@ source(here::here("code", "functions.R"))
 compile("code/logistic3.cpp")
 dyn.load(dynlib("code/logistic3"))
 
-# Load data
-# Complete dataset from Ivy, includes some smaller females that were missing from previous spreadsheet
-data_complete <- readxl::read_xlsx(here("data", "plumbeus-unprocessed.xlsx"))
-
-# Incomplete dataset that has full repro details
-data_incomplete <- readxl::read_xls(here("data", "plumbeus-extra-unprocessed.xls"), sheet = 6) %>%
-  select(
-    ID = `SBAR .`, `OVARY L (mm)`, `OVARY WIDTH`, `OVARY WEIGHT (g)`, `TOTAL OOCYTES`, `. VIT`,
-    `DIAMETER LARGEST OO`, `UTERUS WIDTH`, `NIDAMENTAL WIDTH`, `PUPS?`, `. LEFT`, `. RIGHT`
-  ) %>%
-  arrange(ID) %>%
-  # Remove #358 as it is a duplicate, doesn't seem to have been included in final analysis
-  filter(!row_number() %in% 281)
-
-# Load data for pups
-pups <- read_csv(here("data", "plumbeus-pups-unprocessed.csv")) %>% 
-  rename_all(tolower) %>%
-  select(ID = maternal.id, puplen = `stl.cm`) %>% 
-  mutate(puplen = as.numeric(puplen))
-
-# Treat July as beginning of a new year / season
-
-# SBAR1242 stage 4 just ovulated and pregnant, but June so count as resting for this year
-# SBAR1248 stage 4 just ovulated and pregnant, but June so count as resting for this year
-# SBAR1244 stage 4 just ovulated and pregnant, but June so count as resting for this year
-# SBAR471 non-pregnant, perhaps pupped late?
-# SBAR353 stage 6 postpartum but month is September so would have been maternal last season
-# SBAR303 possible stage 6 but definitely not in maternal condition
-# SBAR376 stage 6 postpartum but month is September so would have been maternal last season
-# SBAR219 stage 6 postpartum but month is August so would have been maternal last season
-# SBAR478 stage 6 postpartum but month is November so would have been maternal last season
-
-data <- left_join(data_complete, data_incomplete) %>%
-  mutate(month = month(Date)) %>%
-  rename(MOD = `DIAMETER LARGEST OO`) %>%
-  mutate(z = ifelse(Stage %in% c(4, 5, 6), 1, 0)) %>%
-  mutate(z = ifelse(ID %in% c(
-    "SBAR1242", "SBAR1248", "SBAR1244", "SBAR471",
-    "SBAR353", "SBAR303", "SBAR376",
-    "SBAR219", "SBAR478"
-  ), 0, z)) %>%
-  left_join(pups) %>% 
-  select(ID, month, MOD, Stage, x = FL, z, puplen) %>%
-  group_by(ID, month, MOD, Stage, x, z) %>% 
-  summarise(puplen = mean(puplen)) %>% 
-  filter(!is.na(x), !is.na(z)) 
-
-# Look at MOD and embryo length vs month to check maternal classifications
-ggplot() +
-  geom_point(data = filter(data, !Stage %in% c(1, 2)), aes(x = month, y = MOD, col = as.factor(Stage))) +
-  facet_wrap(~z, nrow = 2) +
-  scale_x_continuous(breaks = seq(0, 12, 2))
-
-ggplot() +
-  geom_point(data = filter(data, Stage %in% c(4, 5)), aes(x = month, y = puplen, col = as.factor(Stage))) +
-  scale_x_continuous(breaks = seq(0, 12, 2))
-
-
-
-# Load data from Andrew
-data_complete2 <- readxl::read_xlsx(here("data", "plumbeus-unprocessed-piercy.xlsx")) %>% 
-  select(month, MOD, puplen = emb_tl, Stage = stage, x = FL, z = mat_stage) %>% 
-  mutate(MOD = as.numeric(MOD))
-
-# Look at MOD and embryo length vs month to check maternal classifications
-ggplot() +
-  geom_point(data = filter(data_complete2, Stage %in% c(3:6), !is.na(MOD)), aes(x = month, y = MOD, col = as.factor(Stage))) +
-  facet_wrap(~z, nrow = 2) +
-  scale_x_continuous(breaks = seq(0, 12, 2))
-
-ggplot() +
-  geom_point(data = filter(data_complete2, Stage %in% c(4, 5)), aes(x = month, y = puplen, col = as.factor(Stage))) +
-  scale_x_continuous(breaks = seq(0, 12, 2))
-
-data2 <- select(data_complete2, month, Stage, x, z) 
-  filter(!is.na(x), !is.na(z))
-
-# Joing Ivy and Andrew's data
+# Load empirical data set
+# This includes original data set collected by Piercy et al (2016)
+# (https://doi.org/10.1111/jfb.12945) and Baremore and Hale (2012) 
+# (10.1080/19425120.2012.700904). These two data sets were joined together
+# and maternal status was assigned for each individual. Code for this step
+# and the original data files are available on request. 
 
 # Tidy up data 
-data <- data %>% 
-  ungroup() %>% select(month, Stage, x, z)
-  rbind(data2) %>% 
-  mutate(y = ifelse(Stage > 2, 1, 0)) %>% 
-  select(x, y, z) %>% 
-  write_rds(here("data", "empirical-plumbeus.Rds"))
+data <- read_rds(here("data", "empirical-plumbeus.Rds")) %>%
+  select(-source)
 
 # Run analyses ----------------------------------------------------------------
 
