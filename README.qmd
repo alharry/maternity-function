@@ -3,7 +3,11 @@ title: "Quantifying maternal reproductive output of chondrichthyan fishes"
 format: gfm
 ---
 
-# Example
+## Alastair Harry, Ivy Baremore, Andrew Piercy
+
+Accepted scientific manuscript:
+
+# Empirical example
 
 ## Load data
 
