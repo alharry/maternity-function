@@ -1,5 +1,6 @@
 ---
 output: pdf_document
+keet_text: true
 ---
 
 ```{r setup, include=FALSE}

@@ -1,6 +1,7 @@
 ---
 output: 
   pdf_document:
+    keep_tex: true
     latex_engine: "pdflatex"
 geometry: 
     - bottom=1.5cm
@@ -12,6 +13,7 @@ header-includes:
     - \usepackage{lscape}
     - \pagenumbering{gobble} 
 tables: true
+
 ---
 
 ```{r setup, include=FALSE}

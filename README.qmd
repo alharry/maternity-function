@@ -3,7 +3,9 @@ title: "Quantifying maternal reproductive output of chondrichthyan fishes"
 format: gfm
 ---
 
-## Example
+# Example
+
+## Load data
 
 Load data for sandbar shark maternity data set. Rows are data from individuals sharks x is fork length (cm) and z is maternal status (0 = non maternal, 1 = maternal).
 
@@ -23,7 +25,7 @@ data %>%
   
 ```
 
-## Bin data into suitable length categories for plotting
+Bin data into suitable length categories for plotting.
 
 ```{r message=FALSE, warning=FALSE}
 brks = seq(40, 220, 10)
@@ -34,11 +36,25 @@ data_binned <- data %>%
   summarise(p = sum(z)/ n())
 
 
-(p <- ggplot()  + 
+ggplot()  + 
   geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
   ylim(0, 1) +
-  labs(x = "Fork length (cm)", y = "Proportion in maternal condition"))
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
 ```
+
+Add marginal rug plots to show individual data points.
+
+```{r}
+ggplot()  + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  ylim(0, 1) +
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
+
+```
+
+## Run model
 
 Compile 3 parameter logistic model
 
