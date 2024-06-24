@@ -15,8 +15,10 @@ dyn.load(dynlib("code/logistic3"))
 # and maternal status was assigned for each individual. Code for this step
 # and the original data files are available on request. 
 
+
+
 # Tidy up data 
-data <- read_rds(here("data", "empirical-plumbeus.Rds")) %>%
+data <- read_csv(here("data", "empirical-plumbeus.csv"))  %>%
   select(-source)
 
 # Run analyses ----------------------------------------------------------------
@@ -221,3 +223,4 @@ summary <- rbind(summary1, summary2, summary3) %>%
   arrange(delta_AIC)
 
 write_rds(summary, here("data", "empirical-summary.Rds"))
+

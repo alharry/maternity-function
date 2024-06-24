@@ -1,7 +1,17 @@
 # Quantifying maternal reproductive output of chondrichthyan fishes
 
 
-## Example
+## Alastair Harry, Ivy Baremore, Andrew Piercy
+
+Accepted scientific manuscript:
+
+Repository structure
+
+fs::dir_tree()
+
+# Empirical example
+
+## Load data
 
 Load data for sandbar shark maternity data set. Rows are data from
 individuals sharks x is fork length (cm) and z is maternal status (0 =
@@ -12,7 +22,7 @@ library(tidyverse)
 
 theme_set(theme_bw())
 
-data <- read_rds(here::here("data", "empirical-plumbeus.Rds"))
+data <- read_csv(here::here("data", "empirical-plumbeus.csv"))
 
 data %>% 
   ggplot() + 
@@ -24,7 +34,7 @@ data %>%
 
 ![](README_files/figure-commonmark/unnamed-chunk-1-1.png)
 
-## Bin data into suitable length categories for plotting
+Bin data into suitable length categories for plotting.
 
 ``` r
 brks = seq(40, 220, 10)
@@ -35,13 +45,28 @@ data_binned <- data %>%
   summarise(p = sum(z)/ n())
 
 
-(p <- ggplot()  + 
+ggplot()  + 
   geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
   ylim(0, 1) +
-  labs(x = "Fork length (cm)", y = "Proportion in maternal condition"))
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
 ```
 
 ![](README_files/figure-commonmark/unnamed-chunk-2-1.png)
+
+Add marginal rug plots to show individual data points.
+
+``` r
+ggplot()  + 
+  geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  ylim(0, 1) +
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
+```
+
+![](README_files/figure-commonmark/unnamed-chunk-3-1.png)
+
+## Run model
 
 Compile 3 parameter logistic model
 

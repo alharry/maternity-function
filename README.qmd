@@ -22,7 +22,7 @@ library(tidyverse)
 
 theme_set(theme_bw())
 
-data <- read_rds(here::here("data", "empirical-plumbeus.Rds"))
+data <- read_csv(here::here("data", "empirical-plumbeus.csv"))
 
 data %>% 
   ggplot() + 
