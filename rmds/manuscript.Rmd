@@ -47,7 +47,7 @@ source(here::here("code", "setup.R"))
 
 # Load results
 empirical <- read_rds(here("data", "empirical-summary.Rds"))
-plumbeus <- read_rds(here("data", "empirical-plumbeus.Rds"))
+plumbeus <- read_csv(here("data", "empirical-plumbeus.csv"))
 
 ```
 
@@ -227,5 +227,9 @@ The authors declare there are no competing interests.
 # Data availability
 
 Data generated or analyzed during this study are available from the corresponding author upon reasonable request.
+
+# Funding statement
+
+The authors declare no specific funding for this work.
 
 # References
