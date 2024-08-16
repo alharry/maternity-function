@@ -3,7 +3,13 @@
 
 ## Alastair Harry, Ivy Baremore, Andrew Piercy
 
-Accepted scientific manuscript:
+Published scientific manuscript:
+
+Harry AV, Baremore IE & Piercy AN (2024) Quantifying maternal
+reproductive output of chondrichthyan fishes. *Canadian Journal of
+Fisheries and Aquatic Sciences*
+
+![](https://mc06.manuscriptcentral.com/societyimages/cjfas-pubs/scholarOne-CJFAS_en_US.png)
 
 Repository structure
 
