@@ -26,7 +26,8 @@ library(tidyverse)
 
 theme_set(theme_bw())
 
-data <- read_csv(here::here("data", "empirical-plumbeus.csv"))
+data <- read_csv(here::here("data", "empirical-plumbeus.csv")) %>% 
+  select(-source)
 
 data %>% 
   ggplot() + 
@@ -66,12 +67,30 @@ ggplot()  +
 
 ```
 
-## Run model
+## 3 Parameter logistic model
 
-Compile 3 parameter logistic model
+Compile the 3 parameter logistic model. The model
 
 ```{r message=FALSE, warning=FALSE}
 library(TMB)
 compile("code/logistic3.cpp")
 dyn.load(dynlib("code/logistic3"))
+```
+
+```{r}
+
+
+
+# Parameter list
+pars <- list(m50 = 160, m95 = 170, c = 0.5)
+
+# Create objective function
+obj <- MakeADFun(
+  data = data,
+  parameters = pars,
+  DLL = "logistic3"
+)
+
+# Optimize
+opt <- nlminb(obj$par, obj$fn, obj$gr, lower = c(0, 0, 0), upper = c(Inf, Inf, 1))
 ```
