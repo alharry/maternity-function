@@ -22,7 +22,7 @@ knitr::include_graphics(here("img","figure1.png"))
 
 Figure 1. Approach used to generate simulated data and test the performance of four methods for calculating maternity parameters. Illustrations © R.Swainston/www.anima.net.au
 
-```{r fig.width = 7, fig.height= 5.5}
+```{r fig.width = 7.2, fig.height= 5.5}
 data <- read_rds(here("data", "simulations-pivot.Rds")) %>% 
   filter(method_long %in% "3PLF - estimated")
 

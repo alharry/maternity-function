@@ -19,7 +19,7 @@ fs::dir_tree()
 
 ## Load data
 
-Load data for sandbar shark maternity data set. Rows are data from individuals sharks x is fork length (cm) and z is maternal status (0 = non maternal, 1 = maternal).
+Load sandbar shark maternity data set. Rows are data from individuals sharks.
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -29,6 +29,16 @@ theme_set(theme_bw())
 data <- read_csv(here::here("data", "empirical-plumbeus.csv")) %>% 
   select(-source)
 
+```
+
+*x* is fork length (cm) and *z* is maternal status (0 = non maternal, 1 = maternal).
+
+```{r}
+head(data)
+```
+
+
+```{r}
 data %>% 
   ggplot() + 
   geom_histogram(aes(x = x, fill = as.factor(z)), binwidth = 5, col = "black") +
@@ -38,9 +48,9 @@ data %>%
   
 ```
 
-Bin data into suitable length categories for plotting.
+Bin data into suitable length categories for plotting. Add marginal rug plots to show individual data points.
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=TRUE}
 brks = seq(40, 220, 10)
 data_binned <- data %>%
   mutate(x_bin = findInterval(x, brks)) %>% 
@@ -50,22 +60,13 @@ data_binned <- data %>%
 
 
 ggplot()  + 
-  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
-  ylim(0, 1) +
-  labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
-```
-
-Add marginal rug plots to show individual data points.
-
-```{r}
-ggplot()  + 
   geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
   geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
   geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
   ylim(0, 1) +
   labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
-
 ```
+
 
 ## 3 Parameter logistic model
 
