@@ -19,9 +19,9 @@ fs::dir_tree()
 
 ## Load data
 
-Load sandbar shark maternity data set. Rows are data from individuals sharks.
+Load sandbar shark maternity data set.
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, include=TRUE}
 library(tidyverse)
 
 theme_set(theme_bw())
@@ -31,12 +31,13 @@ data <- read_csv(here::here("data", "empirical-plumbeus.csv")) %>%
 
 ```
 
-*x* is fork length (cm) and *z* is maternal status (0 = non maternal, 1 = maternal).
+Rows are data from individuals sharks. *x* is fork length (cm) and *z* is maternal status (0 = non maternal, 1 = maternal).
 
 ```{r}
 head(data)
 ```
 
+The dataset consists of maturity and maternity at length data for 1087 female sandbar sharks, 640 of which are mature, and 206 of which were in maternal condition.
 
 ```{r}
 data %>% 
@@ -48,7 +49,7 @@ data %>%
   
 ```
 
-Bin data into suitable length categories for plotting. Add marginal rug plots to show individual data points.
+Bin data into suitable length categories for plotting, in this case 10cm length bins work well. Marginal rug plots are also helpful for displaying the distribution of individual data points.
 
 ```{r message=FALSE, warning=FALSE, include=TRUE}
 brks = seq(40, 220, 10)
@@ -58,7 +59,6 @@ data_binned <- data %>%
   group_by(x_bin) %>%
   summarise(p = sum(z)/ n())
 
-
 ggplot()  + 
   geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
   geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
@@ -67,10 +67,9 @@ ggplot()  +
   labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
 ```
 
+## 3 parameter logistic maternity function (3PLF)
 
-## 3 Parameter logistic model
-
-Compile the 3 parameter logistic model. The model
+To run the 3PLF model, load the `TMB` library, compile the `C++` file and load the compiled file.
 
 ```{r message=FALSE, warning=FALSE}
 library(TMB)
@@ -78,10 +77,9 @@ compile("code/logistic3.cpp")
 dyn.load(dynlib("code/logistic3"))
 ```
 
+Initialize a list of parameters for the model with their starting values, then construct the objective function to be minimised using R.
+
 ```{r}
-
-
-
 # Parameter list
 pars <- list(m50 = 160, m95 = 170, c = 0.5)
 

@@ -19,8 +19,7 @@ fs::dir_tree()
 
 ## Load data
 
-Load sandbar shark maternity data set. Rows are data from individuals
-sharks.
+Load sandbar shark maternity data set.
 
 ``` r
 library(tidyverse)
@@ -31,8 +30,8 @@ data <- read_csv(here::here("data", "empirical-plumbeus.csv")) %>%
   select(-source)
 ```
 
-*x* is fork length (cm) and *z* is maternal status (0 = non maternal, 1
-= maternal).
+Rows are data from individuals sharks. *x* is fork length (cm) and *z*
+is maternal status (0 = non maternal, 1 = maternal).
 
 ``` r
 head(data)
@@ -48,6 +47,10 @@ head(data)
     5   148     1     0
     6   151     1     1
 
+The dataset consists of maturity and maternity at length data for 1087
+female sandbar sharks, 640 of which are mature, and 206 of which were in
+maternal condition.
+
 ``` r
 data %>% 
   ggplot() + 
@@ -59,8 +62,9 @@ data %>%
 
 ![](README_files/figure-commonmark/unnamed-chunk-3-1.png)
 
-Bin data into suitable length categories for plotting. Add marginal rug
-plots to show individual data points.
+Bin data into suitable length categories for plotting, in this case 10cm
+length bins work well. Marginal rug plots are also helpful for
+displaying the distribution of individual data points.
 
 ``` r
 brks = seq(40, 220, 10)
@@ -69,7 +73,6 @@ data_binned <- data %>%
   mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
   group_by(x_bin) %>%
   summarise(p = sum(z)/ n())
-
 
 ggplot()  + 
   geom_rug(data = filter(data, z == 1), aes(x = x), sides = "t") +
@@ -81,9 +84,9 @@ ggplot()  +
 
 ![](README_files/figure-commonmark/unnamed-chunk-4-1.png)
 
-## 3 Parameter logistic model
+## 3 parameter logistic maternity function (3PLF)
 
-Compile the 3 parameter logistic model. The model
+To run the 3PLF model, first compile the `TMB`
 
 ``` r
 library(TMB)
