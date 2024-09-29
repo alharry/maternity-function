@@ -113,7 +113,8 @@ data <-
   # Generate simulated length data
   mutate(data = map2(pars, id, generate_data)) %>%
   # Simulate maternal data
-  mutate(data = map2(pars, data, generate_maternal_data)) %>% # How many maternal females are there in the simulated data
+  mutate(data = map2(pars, data, generate_maternal_data)) %>% 
+  # How many maternal females are there in the simulated data
   mutate(n_maternal = map_dbl(data, ~ sum(.$z))) %>%
   # Are there zero maternal females?
   mutate(no_maternal = ifelse(n_maternal == 0, 1, 0)) %>% 

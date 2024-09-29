@@ -7,13 +7,15 @@ format: gfm
 
 Published scientific manuscript:
 
-Harry AV, Baremore IE & Piercy AN (2024) Quantifying maternal reproductive output of chondrichthyan fishes. *Canadian Journal of Fisheries and Aquatic Sciences*
+Harry AV, Baremore IE & Piercy AN (2024) Quantifying maternal reproductive output of chondrichthyan fishes. *Canadian Journal of Fisheries and Aquatic Sciences.* <https://doi.org/10.1139/cjfas-2024-0031>
 
 ![](https://mc06.manuscriptcentral.com/societyimages/cjfas-pubs/scholarOne-CJFAS_en_US.png)
 
-Repository structure
+Repository structure:
 
+```{r, include = TRUE, eval=TRUE, echo=FALSE}
 fs::dir_tree()
+```
 
 # Empirical example
 
@@ -39,17 +41,44 @@ head(data)
 
 The dataset consists of maturity and maternity at length data for 1087 female sandbar sharks, 640 of which are mature, and 206 of which were in maternal condition.
 
-```{r}
+```{r, include = TRUE, eval=TRUE, echo=FALSE}
+data %>% 
+  filter(!is.na(y)) %>% 
+  ggplot() + 
+  geom_histogram(aes(x = x, fill = as.factor(y)), binwidth = 5, col = "black") +
+  labs(x = "Fork length (cm)", y = "Proportion in mature condition", title = "Length distribution showing female maturity stage") + 
+  guides(fill = guide_legend(title = "Maturity stage")) + 
+  theme(legend.position = c(0.2, 0.75))
+```
+
+```{r, include = TRUE, eval=TRUE, echo=FALSE}
 data %>% 
   ggplot() + 
   geom_histogram(aes(x = x, fill = as.factor(z)), binwidth = 5, col = "black") +
-  labs(x = "Fork length (cm)", y = "Proportion in maternal condition") + 
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition", title = "Length distribution showing female maternity stage") + 
   guides(fill = guide_legend(title = "Maternal stage")) + 
-  theme(legend.position = "top")
+  theme(legend.position = c(0.2, 0.75))
   
 ```
 
 Bin data into suitable length categories for plotting, in this case 10cm length bins work well. Marginal rug plots are also helpful for displaying the distribution of individual data points.
+
+```{r message=FALSE, warning=FALSE, include=TRUE}
+brks = seq(40, 220, 10)
+data_binned <- data %>%
+  filter(!is.na(y)) %>% 
+  mutate(x_bin = findInterval(x, brks)) %>% 
+  mutate(x_bin = (brks[x_bin] + brks[x_bin + 1]) / 2) %>% 
+  group_by(x_bin) %>%
+  summarise(p = sum(y)/ n())
+
+ggplot()  + 
+  geom_rug(data = filter(data, y == 1), aes(x = x), sides = "t") +
+  geom_rug(data = filter(data, y == 0), aes(x = x), sides = "b") +
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  ylim(0, 1) +
+  labs(x = "Fork length (cm)", y = "Proportion in mature condition", title = "Length at maturity data for female sandbar sharks") 
+```
 
 ```{r message=FALSE, warning=FALSE, include=TRUE}
 brks = seq(40, 220, 10)
@@ -64,22 +93,22 @@ ggplot()  +
   geom_rug(data = filter(data, z == 0), aes(x = x), sides = "b") +
   geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
   ylim(0, 1) +
-  labs(x = "Fork length (cm)", y = "Proportion in maternal condition")
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition", title = "Length at maternity data for female sandbar sharks") 
 ```
 
 ## 3 parameter logistic maternity function (3PLF)
 
 To run the 3PLF model, load the `TMB` library, compile the `C++` file and load the compiled file.
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, results="hide"}
 library(TMB)
 compile("code/logistic3.cpp")
 dyn.load(dynlib("code/logistic3"))
 ```
 
-Initialize a list of parameters for the model with their starting values, then construct the objective function to be minimised using R.
+Initialize a list of parameters for the model with their starting values, then construct the objective function to be minimised using R. Next use `nlminb` to optimize the model. `nlminb` takes as its arguments a vector of the parameters to be estimated, the function to be optimized, an analytical gradient vector that aids with optimization, and vectors of maximum and minimum allowable values for the model parameters.
 
-```{r}
+```{r message=FALSE, warning=FALSE, results = "hide"}
 # Parameter list
 pars <- list(m50 = 160, m95 = 170, c = 0.5)
 
@@ -93,3 +122,17 @@ obj <- MakeADFun(
 # Optimize
 opt <- nlminb(obj$par, obj$fn, obj$gr, lower = c(0, 0, 0), upper = c(Inf, Inf, 1))
 ```
+
+To check whether the model has successfully converged, run the following:
+
+```{r}
+opt$convergence
+```
+
+The maximum likelihood values of parameters estimated by `TMB` can be obtained as follows:
+
+```{r }
+opt$par
+```
+
+The estimated length at 50% maternity ($L_{50}$) and length at 95% maternity ($L_{95}$) are 160 and 174cm, respectively. $L_{50}$ is estimated length at which half of the females in the population were in maternal condition, meaning they would have given birth and contributed to recruitment within that year. The final parameter is the asymptotic of the logistic function, $P_{Max}$, which is the maximum proportion of females in a given year in maternal condition, in this case 0.48 (or 48% of the population).
