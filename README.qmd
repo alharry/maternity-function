@@ -21,7 +21,7 @@ fs::dir_tree()
 
 ## Load data
 
-Load sandbar shark maternity data set.
+Start by loading the example data. The dataset is an amalgamation of data from two studies on the reproductive biology of sandbar sharks by [Baremore and Hale (2012)](https://doi.org/10.1080/19425120.2012.700904) and [Piercy et al. (2016)](https://doi.org/10.1111/jfb.12945).
 
 ```{r message=FALSE, warning=FALSE, include=TRUE}
 library(tidyverse)
@@ -33,35 +33,35 @@ data <- read_csv(here::here("data", "empirical-plumbeus.csv")) %>%
 
 ```
 
-Rows are data from individuals sharks. *x* is fork length (cm) and *z* is maternal status (0 = non maternal, 1 = maternal).
+In this analysis, the fork length (FL) of the shark is the independent variable, and is continuous number ranging from `r min(data$x)`cm to `r max(data$x)`cm. Maturity stage and maternity stage are the dependent variables and are binary (either 0 for non mature / non maternal or 1 for mature / maternal). Rows in the data are data from individuals sharks. x is FL, y is maturity stage, and z is maternity stage.
 
 ```{r}
 head(data)
 ```
 
-The dataset consists of maturity and maternity at length data for 1087 female sandbar sharks, 640 of which are mature, and 206 of which were in maternal condition.
+The data consist of maturity and maternity at length data for 1087 female sandbar sharks, 640 of which are mature, and 206 of which were in maternal condition.
 
-```{r, include = TRUE, eval=TRUE, echo=FALSE}
+```{r, include = TRUE, eval=TRUE, warning=FALSE, echo=FALSE}
 data %>% 
   filter(!is.na(y)) %>% 
   ggplot() + 
   geom_histogram(aes(x = x, fill = as.factor(y)), binwidth = 5, col = "black") +
   labs(x = "Fork length (cm)", y = "Proportion in mature condition", title = "Length distribution showing female maturity stage") + 
   guides(fill = guide_legend(title = "Maturity stage")) + 
-  theme(legend.position = c(0.2, 0.75))
+  theme(legend.position = "inside", legend.position.inside = c(0.2, 0.75))
 ```
 
-```{r, include = TRUE, eval=TRUE, echo=FALSE}
+```{r, include = TRUE, eval=TRUE, warning = FALSE, echo=FALSE}
 data %>% 
   ggplot() + 
   geom_histogram(aes(x = x, fill = as.factor(z)), binwidth = 5, col = "black") +
   labs(x = "Fork length (cm)", y = "Proportion in maternal condition", title = "Length distribution showing female maternity stage") + 
   guides(fill = guide_legend(title = "Maternal stage")) + 
-  theme(legend.position = c(0.2, 0.75))
+  theme(legend.position = "inside", legend.position.inside = c(0.2, 0.75))
   
 ```
 
-Bin data into suitable length categories for plotting, in this case 10cm length bins work well. Marginal rug plots are also helpful for displaying the distribution of individual data points.
+To visualize the binary response variable, it can be helpful to bin the explanatory variable (FL) into length categories. In this case 10cm length bins work well. Marginal rug plots are also helpful for displaying the distribution of individual data points.
 
 ```{r message=FALSE, warning=FALSE, include=TRUE}
 brks = seq(40, 220, 10)
@@ -98,7 +98,7 @@ ggplot()  +
 
 ## 3 parameter logistic maternity function (3PLF)
 
-To run the 3PLF model, load the `TMB` library, compile the `C++` file and load the compiled file.
+To run the 3PLF model, begin by loading the `TMB` library, compile the `C++` file and load the compiled file.
 
 ```{r message=FALSE, warning=FALSE, results="hide"}
 library(TMB)

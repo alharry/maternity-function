@@ -115,7 +115,10 @@ Repository structure:
 
 ## Load data
 
-Load sandbar shark maternity data set.
+Start by loading the example data. The dataset is an amalgamation of
+data from two studies on the reproductive biology of sandbar sharks by
+[Baremore and Hale (2012)](https://doi.org/10.1080/19425120.2012.700904)
+and [Piercy et al. (2016)](https://doi.org/10.1111/jfb.12945).
 
 ``` r
 library(tidyverse)
@@ -126,8 +129,12 @@ data <- read_csv(here::here("data", "empirical-plumbeus.csv")) %>%
   select(-source)
 ```
 
-Rows are data from individuals sharks. *x* is fork length (cm) and *z*
-is maternal status (0 = non maternal, 1 = maternal).
+In this analysis, the fork length (FL) of the shark is the independent
+variable, and is continuous number ranging from 48 to 202cm. Maturity
+stage and maternity stage are the dependent variables and are binary
+(either 0 for non mature / non maternal or 1 for mature / maternal).
+Rows in the data are data from individuals sharks. x is FL, y is
+maturity stage, and z is maternity stage.
 
 ``` r
 head(data)
@@ -143,7 +150,7 @@ head(data)
     5   148     1     0
     6   151     1     1
 
-The dataset consists of maturity and maternity at length data for 1087
+The data consist of maturity and maternity at length data for 1087
 female sandbar sharks, 640 of which are mature, and 206 of which were in
 maternal condition.
 
@@ -151,7 +158,8 @@ maternal condition.
 
 ![](README_files/figure-commonmark/unnamed-chunk-5-1.png)
 
-Bin data into suitable length categories for plotting, in this case 10cm
+To visualize the binary response variable, it can be helpful to bin the
+explanatory variable (FL) into length categories. In this case 10cm
 length bins work well. Marginal rug plots are also helpful for
 displaying the distribution of individual data points.
 
@@ -194,8 +202,8 @@ ggplot()  +
 
 ## 3 parameter logistic maternity function (3PLF)
 
-To run the 3PLF model, load the `TMB` library, compile the `C++` file
-and load the compiled file.
+To run the 3PLF model, begin by loading the `TMB` library, compile the
+`C++` file and load the compiled file.
 
 ``` r
 library(TMB)
