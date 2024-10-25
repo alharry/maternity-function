@@ -65,8 +65,8 @@ Repository structure:
     │   │       ├── unnamed-chunk-5-1.pdf
     │   │       ├── unnamed-chunk-6-1.pdf
     │   │       └── unnamed-chunk-7-1.pdf
+    │   ├── main-text.pdf
     │   ├── main-text.tex
-    │   ├── manuscript.pdf
     │   ├── tabs.pdf
     │   └── tabs.tex
     ├── rmds
@@ -130,7 +130,7 @@ data <- read_csv(here::here("data", "empirical-plumbeus.csv")) %>%
 ```
 
 In this analysis, the fork length (FL) of the shark is the independent
-variable, and is continuous number ranging from 48 to 202cm. Maturity
+variable, and is continuous number ranging from 48cm to 202cm. Maturity
 stage and maternity stage are the dependent variables and are binary
 (either 0 for non mature / non maternal or 1 for mature / maternal).
 Rows in the data are data from individuals sharks. x is FL, y is

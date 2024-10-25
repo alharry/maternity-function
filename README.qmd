@@ -61,7 +61,7 @@ data %>%
   
 ```
 
-To visualize the binary response variable, it can be helpful to bin the explanatory variable (FL) into length categories. In this case 10cm length bins work well. Marginal rug plots are also helpful for displaying the distribution of individual data points.
+To visualize the binary response variable, it can be helpful to divide the explanatory variable (FL) into discrete length intervals. In this case 10cm length bins work well. Marginal rug plots are also helpful for displaying the distribution of individual data points.
 
 ```{r message=FALSE, warning=FALSE, include=TRUE}
 brks = seq(40, 220, 10)
@@ -135,4 +135,28 @@ The maximum likelihood values of parameters estimated by `TMB` can be obtained a
 opt$par
 ```
 
-The estimated length at 50% maternity ($L_{50}$) and length at 95% maternity ($L_{95}$) are 160 and 174cm, respectively. $L_{50}$ is estimated length at which half of the females in the population were in maternal condition, meaning they would have given birth and contributed to recruitment within that year. The final parameter is the asymptotic of the logistic function, $P_{Max}$, which is the maximum proportion of females in a given year in maternal condition, in this case 0.48 (or 48% of the population).
+The estimated length at 50% maternity ($L_{50}$) and length at 95% maternity ($L_{95}$) are 160 and 174cm, respectively. $L_{50}$ is estimated length at which half of the females in the population were in maternal condition, meaning they would have given birth and contributed to recruitment within that year. The final parameter is the asymptote of the logistic function, $P_{Max}$, which is the maximum proportion of females in a given year in maternal condition, in this case 0.48 (or 48% of the population).
+
+The estimated proportion of females in maternal condition at a given length can then be calculated using the maximum likelihood values of the parameters from the fitted model.
+
+```{r}
+# Length at 50% maternity
+m50 <- opt$par[[1]]
+
+# Length at 95% maternity
+m95 <- opt$par[[2]]
+
+# PMAX
+pmax <- opt$par[[3]]
+
+# 
+newdata <- tibble(len = min(data$x):max(data$x)) %>% 
+    mutate(matern = (pmax / (1 + exp(-log(19) * ((len - m50) / (m95 - m50))))))
+
+ggplot()  + 
+  geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
+  geom_line(data = newdata, aes(x= len, y = matern)) + 
+  ylim(0, 1) +
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition", title = "Length at maternity data for female sandbar sharks") 
+           
+```
