@@ -21,6 +21,7 @@ Repository structure:
     ├── README_files
     │   └── figure-commonmark
     │       ├── unnamed-chunk-1-1.png
+    │       ├── unnamed-chunk-12-1.png
     │       ├── unnamed-chunk-2-1.png
     │       ├── unnamed-chunk-3-1.png
     │       ├── unnamed-chunk-4-1.png
@@ -284,7 +285,7 @@ ggplot()  +
   geom_point(data = data_binned, aes(x = x_bin, y = p), col = "black") + 
   geom_line(data = newdata, aes(x= len, y = matern)) + 
   ylim(0, 1) +
-  labs(x = "Fork length (cm)", y = "Proportion in maternal condition", title = "Length at maternity data for female sandbar sharks") 
+  labs(x = "Fork length (cm)", y = "Proportion in maternal condition", title = "Observed and predicted length at maternity data for female sandbar sharks") 
 ```
 
 ![](README_files/figure-commonmark/unnamed-chunk-12-1.png)
