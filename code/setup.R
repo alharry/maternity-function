@@ -9,7 +9,7 @@ set.seed(3)
 # Load libraries
 libs<-c("MASS", "tidyverse", "knitcitations", "bibtex", "lubridate",
         "forcats", "here", "TMB", "broom", "rsample", "cowplot",
-        "grid", "gridExtra", "xtable")
+        "grid", "gridExtra", "xtable", "rsample")
 
 lapply(libs, library, character.only = TRUE)
 
